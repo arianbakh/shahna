@@ -48,6 +48,18 @@
                 <span class="glyphicon glyphicon-user"></span>
               </a>
             </li>
+            <li>
+              <a href="#">
+                <span>۸۳۷</span>
+                <span class="glyphicon glyphicon-star"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>۱۲</span>
+                <span class="glyphicon glyphicon-comment"></span>
+              </a>
+            </li>
             {% else %}
             <li>
               <a href="{% url 'login' %}">
@@ -56,6 +68,10 @@
               </a>
             </li>
             {% endif %}
+
+          </ul>
+
+          <ul class="nav navbar-nav">
 
             <li>
               <a href="{% url 'ask' %}">
