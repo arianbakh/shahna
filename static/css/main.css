@@ -1,7 +1,17 @@
 .navbar-brand {
   padding: 0px;
 }
+
 .navbar-brand>img {
   height: 100%;
   width: auto;
+}
+
+@font-face {
+    font-family: "iransans";
+    src: url("../fonts/IRANSansMedium.woff") format('woff');
+}
+
+.persian {
+ font-family: 'iransans';
 }
