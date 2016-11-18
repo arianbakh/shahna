@@ -51,3 +51,11 @@
 .persian-bold::placeholder {
     font-family: 'iransans-bold';
 }
+
+.glyphicon-blue {
+    color: #1F3A93;
+}
+
+.row-top-buffer {
+    margin-top: 20px;
+}

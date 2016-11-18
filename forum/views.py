@@ -17,3 +17,8 @@ def logout(request):
 @login_required
 def profile(request):
     pass  # TODO
+
+
+@login_required
+def ask(request):
+    pass  # TODO
