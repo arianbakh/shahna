@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from core.views import home, login, logout, profile
+from forum.views import home, login, logout, profile
 
 
 urlpatterns = [
