@@ -1,17 +1,53 @@
 .navbar-brand {
-  padding: 0px;
+    padding: 0px;
 }
 
 .navbar-brand>img {
-  height: 100%;
-  width: auto;
+    height: 100%;
+    width: auto;
 }
 
 @font-face {
     font-family: "iransans";
-    src: url("../fonts/IRANSansMedium.woff") format('woff');
+    src: url("../fonts/IRANSans-web.woff") format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "iransans-light";
+    src: url("../fonts/IRANSans-Light-web.woff") format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "iransans-bold";
+    src: url("../fonts/IRANSans-Bold-web.woff") format('woff');
+    font-weight: normal;
+    font-style: italic;
 }
 
 .persian {
- font-family: 'iransans';
+    font-family: 'iransans';
+}
+
+.persian-light {
+    font-family: 'iransans-light';
+}
+
+.persian-bold {
+    font-family: 'iransans-bold';
+}
+
+.persian::placeholder {
+    font-family: 'iransans';
+}
+
+.persian-light::placeholder {
+    font-family: 'iransans-light';
+}
+
+.persian-bold::placeholder {
+    font-family: 'iransans-bold';
 }

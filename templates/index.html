@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <p class="persian">
-        سلام خوبی؟‌ این یه متن فارسیه واسه تست، خیلی جدی نگیرش!
-    </p>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="input-group" dir="ltr"> <!-- changed default dir to get bootstrap's button addons working! -->
+                <span class="input-group-btn" dir="rtl">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                <input type="text" class="form-control persian-light" placeholder="جستجوی سوالات" dir="rtl">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="persian-light">
+                سلام خوبی؟‌ این یه متن فارسیه واسه تست، خیلی جدی نگیرش!
+            </p>
+        </div>
+    </div>
 {% endblock %}
