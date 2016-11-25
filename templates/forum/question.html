@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{question.title}}</h2>
+{{question.description}}
+{{question.stars}}
+{{question.answer_count}}
+{{question.views}}
+
+{% for answer in answers %}
+    {{answer.description}}
+    {{answer.accepted}}
+{% endfor %}
+  
+{% endblock %}

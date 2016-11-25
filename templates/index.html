@@ -16,47 +16,49 @@
     <div class="row row-top-buffer">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a href="#">
-                                <h4 class="persian">چطور دوره‌ی تناوب آونگ فوکو را بیابیم؟</h4>
-                            </a>
+                {% for q in questions %}
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="/question/{{q.id}}/">
+                                    <h4 class="persian">{{ q.title }}</h4>
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <span class="persian-light">
+                                    {{ q.description }} 
+                                </span>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-xs-9 text-left">
+                                <a href="#"><span class="persian-light">#تناوب</span></a>
+                                <a href="#"><span class="persian-light">#آونگ</span></a>
+                                <a href="#"><span class="persian-light">#فیزیک</span></a>
+                            </div>
+                            <div class="col-xs-1 text-center">
+                                <span class="glyphicon glyphicon-comment"></span>
+                                <span>{{ q.answer_count }}</span>
+                            </div>
+                            <div class="col-xs-1 text-center">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span>{{ q.views }}</span>
+                            </div>
+                            <div class="col-xs-1 text-center">
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span>{{ q.stars }}</span>
+                            </div>
                         </div>
                     </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <span class="persian-light">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                            </span>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-xs-9 text-left">
-                            <a href="#"><span class="persian-light">#تناوب</span></a>
-                            <a href="#"><span class="persian-light">#آونگ</span></a>
-                            <a href="#"><span class="persian-light">#فیزیک</span></a>
-                        </div>
-                        <div class="col-xs-1 text-center">
-                            <span class="glyphicon glyphicon-comment"></span>
-                            <span>۱۲</span>
-                        </div>
-                        <div class="col-xs-1 text-center">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span>۱۳۲</span>
-                        </div>
-                        <div class="col-xs-1 text-center">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span>۵</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
