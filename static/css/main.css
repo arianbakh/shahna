@@ -76,3 +76,7 @@
     color: white;
     font-size: 72px;
 }
+
+body {
+    padding-top: 50px;
+}
