@@ -1,9 +1,31 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block content %}
-  <h2>Ask Question</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ question_form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 text-center">
+      <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% for field in question_form %}
+          <div class="form-group">
+            {% if field.errors %}
+              <ul>
+                {% for error in field.errors %}
+                  <li class="persian text-danger">{{ error|escape }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            <div class="col-xs-10 persian-light">
+              {{ field|add_class:"form-control" }}
+            </div>
+            <div class="col-xs-2 persian">
+              {{ field.label_tag }}
+            </div>
+          </div>
+        {% endfor %}
+        <div class="form-group">
+          <button class="btn btn-default persian-light" type="submit">ارسال سوال</button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

@@ -1,11 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{profile.name}}</h2>
-{{profile.email}}
-{{profile.phone}}
-{{profile.city}}
-{{profile.university}}
-{{profile.current_work_place}}
-{{profile.stars}}
- 
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="persian text-center">{{ profile.name }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.email }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-envelope"></span>
+                ایمیل:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.phone }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-earphone"></span>
+                تلفن:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.city }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-globe"></span>
+                شهر:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.university }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-book"></span>
+                دانشگاه:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.current_work_place }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-briefcase"></span>
+                محل کار:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{{ profile.stars }}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-star"></span>
+                ستاره‌ها:
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

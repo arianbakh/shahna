@@ -1,13 +1,50 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block content %}
-
-    <h2>Registration</h2>
-
-    <form action="/accounts/register/" method="post">
-        {% csrf_token %}
-        {{user_form.as_p}}
-        {{profile_form.as_p}}
-        <input type="submit" value="Register" />
-    </form>
-
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <form class="form-horizontal" action="/accounts/register/" method="post">
+                {% csrf_token %}
+                {% for field in user_form %}
+                    <div class="form-group">
+                        {% if field.errors %}
+                            <ul>
+                                {% for error in field.errors %}
+                                    <li class="persian text-danger">{{ error|escape }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="col-xs-10 persian-light">
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                        <div class="col-xs-2 persian">
+                            {{ field.label_tag }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for field in profile_form %}
+                    <div class="form-group">
+                        {% if field.errors %}
+                            <ul>
+                                {% for error in field.errors %}
+                                    <li class="persian text-danger">{{ error|escape }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="col-xs-10 persian-light">
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                        <div class="col-xs-2 persian">
+                            {{ field.label_tag }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-xs-12 text-center">
+                        <input class="btn btn-default persian-light" type="submit" value="ثبت‌نام" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

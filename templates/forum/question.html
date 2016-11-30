@@ -1,14 +1,120 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>{{question.title}}</h2>
-{{question.description}}
-{{question.stars}}
-{{question.answer_count}}
-{{question.views}}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="/question/{{q.id}}/">
+                            <h4 class="persian">{{ question.title }}</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="persian-light">
+                            {{ question.description }}
+                        </span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-xs-9 text-left">
+                        <a href="#"><span class="persian-light">#تناوب</span></a>
+                        <a href="#"><span class="persian-light">#آونگ</span></a>
+                        <a href="#"><span class="persian-light">#فیزیک</span></a>
+                    </div>
+                    <div class="col-xs-1 text-center">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <span>{{ question.answer_count }}</span>
+                    </div>
+                    <div class="col-xs-1 text-center">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span>{{ question.views }}</span>
+                    </div>
+                    <div class="col-xs-1 text-center">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span>{{ question.stars }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TODO remove -->
+<div class="row">
+    <div class="col-xs-11">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-ok"></span>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="persian-light">
+                            {{ question.description }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
+</div>
+
+<!-- TODO remove -->
+<div class="row">
+    <div class="col-xs-11">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="persian-light">
+                            {{ question.description }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
+</div>
 
 {% for answer in answers %}
-    {{answer.description}}
-    {{answer.accepted}}
+<div class="row">
+    <div class="col-xs-11">
+        <div class="panel {% if answer.accepted %}panel-success{% else %}panel-default{% endif %}">
+            <div class="panel-heading">
+                {% if answer.accepted %}
+                <span class="glyphicon glyphicon-ok"></span>
+                {% else %}
+                <span class="glyphicon glyphicon-comment"></span>
+                {% endif %}
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="persian-light">
+                            {{ answer.description }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
+</div>
 {% endfor %}
-  
 {% endblock %}
