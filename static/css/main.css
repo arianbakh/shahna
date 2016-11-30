@@ -55,3 +55,24 @@
 .row-top-buffer {
     margin-top: 20px;
 }
+
+.parallex {
+	background: url('../img/parallex.png');
+    height: 768px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.parallex-text {
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    color: white;
+    font-size: 72px;
+}

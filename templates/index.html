@@ -1,6 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
+{% block full-width-image %}
+<div class="parallex">
+    <span class="parallex-text persian">جواب سوالات خود را بیابید!</span>
+</div>
+{% endblock %}
 {% block content %}
-    <div class="row">
+    <div class="row row-top-buffer">
         <div class="col-xs-12">
             <div class="input-group" dir="ltr"> <!-- changed default dir to get bootstrap's button addons working! -->
                 <span class="input-group-btn" dir="rtl">

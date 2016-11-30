@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 {% block content %}
-    <div class="row">
+    <div class="row row-top-buffer">
         <div class="col-xs-8 col-xs-offset-2">
             <form class="form-horizontal" action="/accounts/register/" method="post">
                 {% csrf_token %}

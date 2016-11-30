@@ -19,8 +19,7 @@
     <![endif]-->
   </head>
   <body dir="rtl">
-
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header navbar-right">
@@ -76,8 +75,8 @@
 
             <li>
               <a href="{% url 'ask' %}">
-                <span class="persian-light text-primary">بپرسید</span>
-                <span class="glyphicon glyphicon-question-sign text-primary"></span>
+                <span class="persian-light">بپرسید</span>
+                <span class="glyphicon glyphicon-question-sign"></span>
               </a>
             </li>
 
@@ -86,11 +85,14 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+    {% block full-width-image %}
+    {% endblock %}
+
     <div class="container">
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
           {% block content %}
-          {% endblock %} 
+          {% endblock %}
         </div>
       </div>
     </div>
