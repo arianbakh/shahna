@@ -8,12 +8,12 @@ from django.utils.translation import ugettext_lazy as _
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(_("name"), max_length=15)
-    email = models.EmailField(max_length=50)
-    phone = models.CharField(_("phone"), max_length=15)
-    city = models.CharField(_("city"), max_length=15)
-    university = models.CharField(max_length=50)
-    current_work_place = models.CharField(max_length=50)
-    stars = models.PositiveIntegerField(verbose_name=_("network mnc"), default=0)
+    name = models.CharField(verbose_name=_("Name"), max_length=15)
+    email = models.EmailField(verbose_name=_("Email"), max_length=50)
+    phone = models.CharField(verbose_name=_("Phone"), max_length=15)
+    city = models.CharField(verbose_name=_("City"), max_length=15)
+    university = models.CharField(verbose_name=_("University"), max_length=50)
+    current_work_place = models.CharField(verbose_name=_("Current work place"), max_length=50)
+    stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
 
 

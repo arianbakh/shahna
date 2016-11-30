@@ -24,7 +24,7 @@ def ask(request):
         question_form = QuestionForm(request.POST)
         if question_form.is_valid():
             question = question_form.save(commit=False)
-            question.published = 'N'
+            question.published = 'P'
             question.save()
             return HttpResponseRedirect('/')
     else:

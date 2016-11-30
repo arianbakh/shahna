@@ -32,6 +32,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'utils.middleware.MultiLangMiddleware',
 ]
 
 ROOT_URLCONF = 'shahna.urls'
@@ -78,7 +79,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'fa-IR'
 
 TIME_ZONE = 'Asia/Tehran'
 
@@ -101,7 +101,7 @@ LANGUAGES = (
     ('fa', 'Persian'),
     ('en', 'English'),
 )
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-IR'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
