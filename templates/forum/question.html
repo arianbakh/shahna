@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 {% block content %}
 <div class="row row-top-buffer">
     <div class="col-xs-12">
@@ -6,7 +7,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="/question/{{q.id}}/">
+                        <a href="/question/{{question.id}}/">
                             <h4 class="persian">{{ question.title }}</h4>
                         </a>
                     </div>
@@ -44,6 +45,22 @@
                     </div>
                 </div>
             </div>
+            <div class="panel-footer">
+                <div class="row">
+                    {% if question.user == user %}
+                        <div class="persian-light col-xs-1">
+                            <a href="{% url 'edit_question' question_id=question.id %}">ویرایش</a>
+                        </div>
+                        <div class="persian-light col-xs-11">
+                            پرسشگر : {{ question.user.profile.name }}
+                        </div>
+                    {% else %}
+                        <div class="persian-light col-xs-12">
+                            پرسشگر : {{ question.user.profile.name }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -55,7 +72,6 @@
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-ok"></span>
             </div>
-
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
@@ -64,6 +80,11 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="panel-footer">
+                <span class="persian-light">
+                    پاسخ‌دهنده : {{ question.user.profile.name }}
+                </span>
             </div>
         </div>
     </div>
@@ -76,6 +97,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-comment"></span>
+                <span>gholam</span>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -85,6 +107,11 @@
                         </span>
                     </div>
                 </div>
+            </div>
+            <div class="panel-footer">
+                <span class="persian-light">
+                    پاسخ‌دهنده : {{ question.user.profile.name }}
+                </span>
             </div>
         </div>
     </div>
@@ -102,7 +129,6 @@
                 <span class="glyphicon glyphicon-comment"></span>
                 {% endif %}
             </div>
-
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
@@ -112,9 +138,52 @@
                     </div>
                 </div>
             </div>
+            <div class="panel-footer">
+                <div class="row">
+                    {% if answer.user == user %}
+                        <div class="persian-light col-xs-1">
+                            <a href="{% url 'edit_answer' answer_id=answer.id %}">ویرایش</a>
+                        </div>
+                        <div class="persian-light col-xs-11">
+                            پاسخ‌دهنده : {{ answer.user.profile.name }}
+                        </div>
+                    {% else %}
+                        <div class="persian-light col-xs-12">
+                            پاسخ‌دهنده : {{ answer.user.profile.name }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
 </div>
 {% endfor %}
+{% if user.is_authenticated %}
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% for field in answer_form %}
+            <div class="form-group">
+            {% if field.errors %}
+              <ul>
+                {% for error in field.errors %}
+                  <li class="persian text-danger">{{ error|escape }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            <div class="col-xs-10 persian-light">
+              {{ field|add_class:"form-control" }}
+            </div>
+            <div class="col-xs-2 persian">
+              {{ field.label_tag }}
+            </div>
+          </div>
+        {% endfor %}
+        <div class="form-group">
+            <button class="btn btn-default persian-light" type="submit">ارسال پاسخ</button>
+        </div>
+    </form>
+{% else %}
+    <a class="btn btn-default persian-light" href="/accounts/login/?next=/question/{{ question.id }}/">برای ارسال پاسخ لطفا وارد شوید</a>
+{% endif %}
 {% endblock %}

@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 from datetime import date
-from django.utils.translation import ugettext_lazy as _
 
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+
 
 class Question(models.Model):
+    user = models.ForeignKey(User)
     title = models.CharField(verbose_name=_("Title"), max_length=50)
     description = models.TextField(verbose_name=_("Description"), default="")
     stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
@@ -19,6 +22,7 @@ class Question(models.Model):
     upload_time = models.DateTimeField(verbose_name=_("Upload time"), default=date.today)
 
 class Answer(models.Model):
+    user = models.ForeignKey(User)
     question = models.ForeignKey(Question)
     description = models.TextField(verbose_name=_("Description"), default="")
     accepted = models.BooleanField(verbose_name=_("Accepted"), default=False)
