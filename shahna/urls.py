@@ -1,5 +1,6 @@
-from django.conf.urls import url, include
+from django.conf import settings
 from django.contrib import admin
+from django.conf.urls import url, include, patterns
 from django.contrib.auth import views as auth_views
 
 from forum.views import home, ask, question_page, edit_question, edit_answer
@@ -14,3 +15,8 @@ urlpatterns = [
     url(r'^edit_question/(?P<question_id>[0-9]+)/$', edit_question, name='edit_question'),
     url(r'^edit_answer/(?P<answer_id>[0-9]+)/$', edit_answer, name='edit_answer'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 13:21+0330\n"
+"POT-Creation-Date: 2016-12-01 15:02+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,53 +19,57 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: account/models.py:11
+msgid "Avatar"
+msgstr "عکس پروفایل"
+
+#: account/models.py:13
 msgid "Name"
 msgstr "نام"
 
-#: account/models.py:12
+#: account/models.py:14
 msgid "Email"
 msgstr "ایمیل"
 
-#: account/models.py:13
+#: account/models.py:15
 msgid "Phone"
 msgstr "شماره تلفن"
 
-#: account/models.py:14
+#: account/models.py:16
 msgid "City"
 msgstr "شهر"
 
-#: account/models.py:15
+#: account/models.py:17
 msgid "University"
 msgstr "دانشگاه"
 
-#: account/models.py:16
+#: account/models.py:18
 msgid "Current work place"
 msgstr "محل کار فعلی"
 
-#: account/models.py:17 forum/models.py:10
+#: account/models.py:19 forum/models.py:13
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: forum/models.py:8
+#: forum/models.py:11
 msgid "Title"
 msgstr "عنوان"
 
-#: forum/models.py:9 forum/models.py:23
+#: forum/models.py:12 forum/models.py:27
 msgid "Description"
 msgstr "توضیحات"
 
-#: forum/models.py:11
+#: forum/models.py:14
 msgid "Views"
 msgstr "بازدید‌ها"
 
-#: forum/models.py:17 forum/models.py:30
+#: forum/models.py:20 forum/models.py:34
 msgid "Publish state"
 msgstr "وضعیت انتشار"
 
-#: forum/models.py:19
+#: forum/models.py:22
 msgid "Upload time"
 msgstr "زمان بارگذاری"
 
-#: forum/models.py:24
+#: forum/models.py:28
 msgid "Accepted"
 msgstr "قبول‌شده"

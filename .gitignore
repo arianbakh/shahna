@@ -1,6 +1,8 @@
 collected_static/*
 !collected_static/PLACEHOLDER
 db.sqlite3
+media/*
+!media/PLACEHOLDER
 
 # Numerous always-ignore extensions
 *.backup
