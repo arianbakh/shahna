@@ -19,7 +19,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'account',
     'forum',
-    'tagging'
 ]
 
 MIDDLEWARE_CLASSES = [

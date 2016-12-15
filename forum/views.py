@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
 
-from forum.models import Question, Answer
+from forum.models import Question, Answer, Tag
 from forum.forms import QuestionForm, AnswerForm
 
 def home(request):
@@ -13,6 +13,22 @@ def home(request):
     for q in questions:
         q.answer_count = q.answer_set.all().count()
     return render_to_response('index.html', {'questions':questions}, context_instance=RequestContext(request))
+
+
+def _get_or_create_tags(data):
+    print data
+    raw_tags = data.split(' ')
+    tags = []
+    for t in raw_tags:
+        print t
+        tag = Tag.objects.filter(name=t).first()
+        if tag != None:
+            tags.append(tag)
+        else:
+            print 'inja'
+            new_tag = Tag.objects.create(name=t)
+            tags.append(new_tag)
+    return tags
 
 
 @login_required
@@ -24,6 +40,7 @@ def ask(request):
             question.published = 'P'
             question.user = request.user
             question.save()
+            question.tags.add(*_get_or_create_tags(question_form.cleaned_data['tags']))
             return HttpResponseRedirect('/')
     else:
         question_form = QuestionForm()
@@ -42,8 +59,19 @@ def edit_question(request, question_id):
             question_form.save()
             return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
     else:
-        question_form = QuestionForm(instance=q)
+        question_form = QuestionForm(instance=q, initial={'tags': ' '.join(q.tags.all().values_list('name', flat=True))})
     return render(request, 'forum/ask.html', {'question_form': question_form,})
+
+
+@login_required
+def remove_question(request, question_id):
+    try:
+        q = Question.objects.get(id=question_id)
+    except Question.DoesNotExist:
+        raise Http404
+    q.published = 'R'
+    q.save()
+    return HttpResponseRedirect(reverse('home'))
 
 
 @login_required
@@ -62,13 +90,23 @@ def edit_answer(request, answer_id):
     return render(request, 'forum/edit_answer.html', {'answer_form': answer_form,})
 
 
+@login_required
+def remove_answer(request, answer_id, question_id):
+    try:
+        a = Answer.objects.get(id=answer_id)
+    except Answer.DoesNotExist:
+        raise Http404
+    a.published = 'R'
+    a.save()
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
+
 def question_page(request, question_id):
     try:
-        q  = Question.objects.get(id=question_id)
+        q  = Question.objects.filter(published='P').get(id=question_id)
     except Question.DoesNotExist:
         raise Http404
     q.answer_count = q.answer_set.all().count()
-    answers = Answer.objects.filter(question=q)
+    answers = Answer.objects.filter(question=q, published='P')
     answer_form = None
     user = request.user
     if user.is_authenticated():

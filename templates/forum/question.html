@@ -25,13 +25,13 @@
 
                 <div class="row">
                     <div class="col-xs-9 text-left">
-                        <a href="#"><span class="persian-light">#تناوب</span></a>
-                        <a href="#"><span class="persian-light">#آونگ</span></a>
-                        <a href="#"><span class="persian-light">#فیزیک</span></a>
+                        {% for tag in question.tags.all %}
+                                <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
+                        {% endfor %}
                     </div>
                     <div class="col-xs-1 text-center">
                         <span class="glyphicon glyphicon-comment"></span>
-                        <span>{{ question.answer_count }}</span>
+                        <span>{{ question.answer_set.count }}</span>
                     </div>
                     <div class="col-xs-1 text-center">
                         <span class="glyphicon glyphicon-eye-open"></span>
@@ -46,10 +46,10 @@
             <div class="panel-footer">
                 <div class="row">
                     {% if question.user == user %}
-                        <div class="persian-light col-xs-1">
-                            <a href="{% url 'edit_question' question_id=question.id %}">ویرایش</a>
+                        <div class="persian-light col-xs-2">
+                            <a href="{% url 'edit_question' question_id=question.id %}">ویرایش</a> <a href="{% url 'remove_question' question_id=question.id %}">حذف</a>
                         </div>
-                        <div class="persian-light col-xs-11">
+                        <div class="persian-light col-xs-10">
                             پرسشگر : {{ question.user.profile.name }}
                         </div>
                     {% else %}
@@ -139,10 +139,10 @@
             <div class="panel-footer">
                 <div class="row">
                     {% if answer.user == user %}
-                        <div class="persian-light col-xs-1">
-                            <a href="{% url 'edit_answer' answer_id=answer.id %}">ویرایش</a>
+                        <div class="persian-light col-xs-2">
+                            <a href="{% url 'edit_answer' answer_id=answer.id %}">ویرایش</a> <a href="{% url 'remove_answer' answer_id=answer.id question_id=question.id %}">حذف</a>
                         </div>
-                        <div class="persian-light col-xs-11">
+                        <div class="persian-light col-xs-10">
                             پاسخ‌دهنده : {{ answer.user.profile.name }}
                         </div>
                     {% else %}

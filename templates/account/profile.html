@@ -12,24 +12,26 @@
                 <h2 class="persian text-center">{{ profile.name }}</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-8">
-                <p class="persian-light">{{ profile.email }}</p>
-            </div>
-            <div class="col-xs-4 persian-light">
-                <span class="glyphicon glyphicon-envelope"></span>
-                ایمیل:
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-8">
-                <p class="persian-light">{{ profile.phone }}</p>
-            </div>
-            <div class="col-xs-4 persian-light">
-                <span class="glyphicon glyphicon-earphone"></span>
-                تلفن:
-            </div>
-        </div>
+        {% if request.user == profile.user %}
+                <div class="row">
+                    <div class="col-xs-8">
+                        <p class="persian-light">{{ profile.email }}</p>
+                    </div>
+                    <div class="col-xs-4 persian-light">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        ایمیل:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <p class="persian-light">{{ profile.phone }}</p>
+                    </div>
+                    <div class="col-xs-4 persian-light">
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        تلفن:
+                    </div>
+                </div>
+        {% endif %}
         <div class="row">
             <div class="col-xs-8">
                 <p class="persian-light">{{ profile.city }}</p>
