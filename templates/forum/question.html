@@ -24,10 +24,15 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col-xs-9 text-left">
+                    <div class="col-xs-4 text-left">
                         {% for tag in question.tags.all %}
                                 <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
                         {% endfor %}
+                    </div>
+                    <div class="col-xs-5 text-center">
+                            {% for field in question.fields.all %}
+                                    <u>{{ field.name }}</u>
+                            {% endfor %}
                     </div>
                     <div class="col-xs-1 text-center">
                         <span class="glyphicon glyphicon-comment"></span>

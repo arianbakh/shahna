@@ -10,6 +10,12 @@ class Tag(models.Model):
     name = models.CharField(verbose_name=_("name"), max_length=50)
 
 
+class UniversityField(models.Model):
+    name = models.CharField(verbose_name=_("name"), max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
 class Question(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(verbose_name=_("Title"), max_length=50)
@@ -26,6 +32,7 @@ class Question(models.Model):
                                              choices=PUBLISH_STATE_CHOICES)
     upload_time = models.DateTimeField(verbose_name=_("Upload time"), auto_now_add=True)
     tags = models.ManyToManyField(Tag, verbose_name=_("tags"))
+    fields = models.ManyToManyField(UniversityField, verbose_name=_("Fields"))
 
 
 class Answer(models.Model):

@@ -16,16 +16,13 @@ def home(request):
 
 
 def _get_or_create_tags(data):
-    print data
     raw_tags = data.split(' ')
     tags = []
     for t in raw_tags:
-        print t
         tag = Tag.objects.filter(name=t).first()
         if tag != None:
             tags.append(tag)
         else:
-            print 'inja'
             new_tag = Tag.objects.create(name=t)
             tags.append(new_tag)
     return tags
@@ -40,6 +37,7 @@ def ask(request):
             question.published = 'P'
             question.user = request.user
             question.save()
+            question_form.save_m2m()
             question.tags.add(*_get_or_create_tags(question_form.cleaned_data['tags']))
             return HttpResponseRedirect('/')
     else:
@@ -57,6 +55,7 @@ def edit_question(request, question_id):
         question_form = QuestionForm(request.POST, instance=q)
         if question_form.is_valid():
             question_form.save()
+            question.tags.add(*_get_or_create_tags(question_form.cleaned_data['tags']))
             return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
     else:
         question_form = QuestionForm(instance=q, initial={'tags': ' '.join(q.tags.all().values_list('name', flat=True))})

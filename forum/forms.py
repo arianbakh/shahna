@@ -8,7 +8,15 @@ class QuestionForm(forms.ModelForm):
     tags = forms.CharField(max_length=255, help_text=_("Please enter tags separated by space ( at least 3 tags)"))
     class Meta:
         model = Question
-        fields = ('title', 'description')
+        fields = ('title', 'description', 'fields')
+        widgets = {
+                "fields": forms.CheckboxSelectMultiple(),
+        }
+        error_messages = {
+            'fields': {
+                'required': _("Select at least one field"),
+            },
+        }
 
     def clean_tags(self):
         data = self.cleaned_data['tags']
