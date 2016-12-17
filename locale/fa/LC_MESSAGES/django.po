@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-15 15:30+0330\n"
+"POT-Creation-Date: 2016-12-17 17:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,19 +62,19 @@ msgstr "محل کار فعلی"
 msgid "Student number"
 msgstr "شماره دانشجویی"
 
-#: account/models.py:21 forum/models.py:17
+#: account/models.py:21 forum/models.py:23
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: account/models.py:23 forum/models.py:20 forum/models.py:37
+#: account/models.py:23 forum/models.py:26 forum/models.py:44
 msgid "New"
 msgstr "جدید"
 
-#: account/models.py:24 forum/models.py:22 forum/models.py:39
+#: account/models.py:24 forum/models.py:28 forum/models.py:46
 msgid "Rejected"
 msgstr "رد شده"
 
-#: account/models.py:25 forum/models.py:35
+#: account/models.py:25 forum/models.py:42
 msgid "Accepted"
 msgstr "قبول‌شده"
 
@@ -87,42 +87,49 @@ msgid "Please enter tags separated by space ( at least 3 tags)"
 msgstr "لطفا برچسب‌ها را وارد کنید (حداقل ۳ برچسب)"
 
 #: forum/forms.py:17
+msgid "Select at least one field"
+msgstr "حداقل یک رشته را انتخاب کنید."
+
+#: forum/forms.py:25
 msgid "Enter at least three diffrent tags"
 msgstr "لطفا حداقل سه برچسب متفاوت وارد کنید"
 
-#: forum/models.py:10
+#: forum/models.py:10 forum/models.py:14
 msgid "name"
 msgstr "نام"
 
-#: forum/models.py:15
+#: forum/models.py:21
 msgid "Title"
 msgstr "عنوان"
 
-#: forum/models.py:16 forum/models.py:34
+#: forum/models.py:22 forum/models.py:41
 msgid "Description"
 msgstr "توضیحات"
 
-#: forum/models.py:18
+#: forum/models.py:24
 msgid "Views"
 msgstr "بازدید‌ها"
 
-#: forum/models.py:21 forum/models.py:38
+#: forum/models.py:27 forum/models.py:45
 msgid "Removed"
 msgstr "حذف شده"
 
-#: forum/models.py:23 forum/models.py:40
-#| msgid "Publish state"
+#: forum/models.py:29 forum/models.py:47
 msgid "Published"
 msgstr "وضعیت انتشار"
 
-#: forum/models.py:25 forum/models.py:42
+#: forum/models.py:31 forum/models.py:49
 msgid "Publish state"
 msgstr "وضعیت انتشار"
 
-#: forum/models.py:27
+#: forum/models.py:33
 msgid "Upload time"
 msgstr "زمان بارگذاری"
 
-#: forum/models.py:28
+#: forum/models.py:34
 msgid "tags"
 msgstr "برچسب‌ها"
+
+#: forum/models.py:35
+msgid "Fields"
+msgstr "رشته‌ها"

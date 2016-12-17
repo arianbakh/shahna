@@ -8,15 +8,29 @@
         {% for field in question_form %}
           <div class="form-group">
             {% if field.errors %}
-              <ul>
+              <ul class="list-unstyled">
                 {% for error in field.errors %}
                   <li class="persian text-danger">{{ error|escape }}</li>
                 {% endfor %}
               </ul>
             {% endif %}
+
+            {% if field.html_name == 'fields' %}
+              <div class="col-xs-10 persian-light text-right">
+                <ul class="list-unstyled">
+                  {% for checkbox in field %}
+                      <li>
+                        {{ checkbox.tag }} {{ checkbox.choice_label }}
+                      </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
             <div class="col-xs-10 persian-light">
               {{ field|add_class:"form-control" }}
             </div>
+            {% endif %}
+
             <div class="col-xs-2 persian">
               {{ field.label_tag }}
             </div>

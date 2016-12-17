@@ -8,7 +8,7 @@
         {% for field in form %}
           <div class="form-group">
             {% if field.errors %}
-              <ul>
+              <ul class="list-unstyled">
                 {% for error in field.errors %}
                   <li class="persian text-danger">{{ error|escape }}</li>
                 {% endfor %}

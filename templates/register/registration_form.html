@@ -8,16 +8,16 @@
                 {% for field in user_form %}
                     <div class="form-group">
                         {% if field.errors %}
-                            <ul>
+                            <ul class="list-unstyled">
                                 {% for error in field.errors %}
                                     <li class="persian text-danger">{{ error|escape }}</li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                        <div class="col-xs-10 persian-light">
+                        <div class="col-xs-9 persian-light">
                             {{ field|add_class:"form-control" }}
                         </div>
-                        <div class="col-xs-2 persian">
+                        <div class="col-xs-3 persian">
                             {{ field.label_tag }}
                         </div>
                     </div>
@@ -25,22 +25,22 @@
                 {% for field in profile_form %}
                     <div class="form-group">
                         {% if field.errors %}
-                            <ul>
+                            <ul class="list-unstyled">
                                 {% for error in field.errors %}
                                     <li class="persian text-danger">{{ error|escape }}</li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
                         {% if field.name == 'avatar' %}
-                            <div class="col-xs-10">
+                            <div class="col-xs-9">
                                 {{ field|add_class:"form-control-file" }}
                             </div>
                         {%else%}
-                            <div class="col-xs-10 persian-light">
+                            <div class="col-xs-9 persian-light">
                                 {{ field|add_class:"form-control" }}
                             </div>
                         {% endif %}
-                        <div class="col-xs-2 persian">
+                        <div class="col-xs-3 persian">
                             {{ field.label_tag }}
                         </div>
 
