@@ -70,5 +70,28 @@
                 </div>
             {% endfor %}
         </div>
+
+        <!-- TODO serverside code -->
+        <!-- NOTE: order is reversed because of rtl -->
+        <div class="col-xs-12 text-center">
+            <ul class="pagination">
+                <li>  <!--NOTE: add disabled class when current page is the last page -->
+                    <a href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">۵</a></li>
+                <li><a href="#">۴</a></li>
+                <li><a href="#">۳</a></li>
+                <li><a href="#">۲</a></li>
+                <li class="active"><a href="#">۱</a></li>  <!-- NOTE: add active class when this is the current page -->
+                <li class="disabled">  <!-- NOTE: add disabled class when current page is the first page -->
+                    <a href="#">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+
 {% endblock %}
