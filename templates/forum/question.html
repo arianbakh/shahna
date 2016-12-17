@@ -45,16 +45,18 @@
                         <span>{{ question.stars }}</span>
                     </div>
                 </div>
-            </div>
-            <div class="panel-footer">
+
+                <hr>
+
+
                 <div class="row">
                     {% if question.user == user %}
                         <div class="persian-light col-xs-3 text-left">
-                            <a class="btn btn-primary btn-sm" href="{% url 'edit_question' question_id=question.id %}">
+                            <a class="btn btn-default btn-sm" href="{% url 'edit_question' question_id=question.id %}">
                                 ویرایش
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a class="btn btn-primary btn-sm" href="{% url 'remove_question' question_id=question.id %}">
+                            <a class="btn btn-default btn-sm" href="{% url 'remove_question' question_id=question.id %}">
                                 حذف
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
@@ -98,11 +100,11 @@
                 <div class="row">
                     {% if answer.user == user %}
                         <div class="persian-light col-xs-3 text-left">
-                            <a class="btn btn-primary btn-sm" href="{% url 'edit_answer' answer_id=answer.id %}">
+                            <a class="btn btn-default btn-sm" href="{% url 'edit_answer' answer_id=answer.id %}">
                                 ویرایش
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a class="btn btn-primary btn-sm" href="{% url 'remove_answer' answer_id=answer.id question_id=question.id %}">
+                            <a class="btn btn-default btn-sm" href="{% url 'remove_answer' answer_id=answer.id question_id=question.id %}">
                                 حذف
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
