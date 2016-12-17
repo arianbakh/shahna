@@ -45,7 +45,7 @@
                         <hr>
 
                         <div class="row">
-                            <div class="col-xs-9 text-left">
+                            <div class="col-xs-6 text-left">
                                 {% for tag in q.tags.all %}
                                         <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
                                 {% endfor %}
@@ -53,15 +53,11 @@
                                     <a href="#"><span class="persian-light">#{{field.name}}</span></a>
                                 {% endfor %}
                             </div>
-                            <div class="col-xs-1 text-center" data-toggle="tooltip" title="پاسخ‌ها">
+                            <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
                                 <span class="glyphicon glyphicon-comment"></span>
                                 <span>{{ q.answer_set.count }}</span>
-                            </div>
-                            <div class="col-xs-1 text-center" data-toggle="tooltip" title="بازدیدها">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span>{{ q.views }}</span>
-                            </div>
-                            <div class="col-xs-1 text-center" data-toggle="tooltip" title="ستاره‌ها">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span>{{ q.stars }}</span>
                             </div>
