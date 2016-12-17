@@ -75,12 +75,42 @@
 
 .parallex-text {
     position: absolute;
-    top: 35%;
+    top: 346px;
     right: 25%;
     color: white;
     font-size: 72px;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-    padding-top: 50px;
+  padding-top: 50px;  /* navbar height */
+  margin-bottom: 60px;  /* footer height */
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;  /* footer height */
+  background-color: #222;
+  color: #eee;
+}
+
+.footer-link {
+    color: #eee;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #eee;
+    text-decoration: none;
+}
+
+.footer-link:visited {
+    color: #eee;
+    text-decoration: none;
 }
