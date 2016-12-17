@@ -32,15 +32,15 @@
                             <a href="#"><span class="persian-light">#{{field.name}}</span></a>
                         {% endfor %}
                     </div>
-                    <div class="col-xs-1 text-center">
+                    <div class="col-xs-1 text-center" data-toggle="tooltip" title="پاسخ‌ها">
                         <span class="glyphicon glyphicon-comment"></span>
                         <span>{{ question.answer_set.count }}</span>
                     </div>
-                    <div class="col-xs-1 text-center">
+                    <div class="col-xs-1 text-center" data-toggle="tooltip" title="بازدیدها">
                         <span class="glyphicon glyphicon-eye-open"></span>
                         <span>{{ question.views }}</span>
                     </div>
-                    <div class="col-xs-1 text-center">
+                    <div class="col-xs-1 text-center" data-toggle="tooltip" title="ستاره‌ها">
                         <span class="glyphicon glyphicon-star"></span>
                         <span>{{ question.stars }}</span>
                     </div>
@@ -126,31 +126,40 @@
     <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
 </div>
 {% endfor %}
-{% if user.is_authenticated %}
-    <form class="form-horizontal" method="post">
-        {% csrf_token %}
-        {% for field in answer_form %}
-            <div class="form-group">
-            {% if field.errors %}
-              <ul class="list-unstyled">
-                {% for error in field.errors %}
-                  <li class="persian text-danger">{{ error|escape }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+
+<div class="row">
+    <div class="col-xs-11">
+    {% if user.is_authenticated %}
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            {% for field in answer_form %}
+                <div class="form-group">
+                {% if field.errors %}
+                  <ul class="list-unstyled">
+                    {% for error in field.errors %}
+                      <li class="persian text-danger">{{ error|escape }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="col-xs-10 persian-light">
+                  {{ field|add_class:"form-control" }}
+                </div>
+                <div class="col-xs-2 persian">
+                  {{ field.label_tag }}
+                </div>
+              </div>
+            {% endfor %}
             <div class="col-xs-10 persian-light">
-              {{ field|add_class:"form-control" }}
+                <div class="form-group">
+                    <button class="btn btn-default persian-light" type="submit">ارسال پاسخ</button>
+                </div>
             </div>
-            <div class="col-xs-2 persian">
-              {{ field.label_tag }}
-            </div>
-          </div>
-        {% endfor %}
-        <div class="form-group">
-            <button class="btn btn-default persian-light" type="submit">ارسال پاسخ</button>
-        </div>
-    </form>
-{% else %}
-    <a class="btn btn-default persian-light" href="/accounts/login/?next=/question/{{ question.id }}/">برای ارسال پاسخ لطفا وارد شوید</a>
-{% endif %}
+            <div class="col-xs-2"></div>  <!-- because offset isn't rtl -->
+        </form>
+    {% else %}
+        <a class="btn btn-default persian-light" href="/accounts/login/?next=/question/{{ question.id }}/">برای ارسال پاسخ لطفا وارد شوید</a>
+    {% endif %}
+    </div>
+    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
+</div>
 {% endblock %}
