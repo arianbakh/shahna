@@ -114,3 +114,33 @@ body {
     color: #eee;
     text-decoration: none;
 }
+
+.question-button-do {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.question-button-do:hover {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.question-button-do:visited {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.question-button-undo {
+    color: gray;
+    text-decoration: none;
+}
+
+.question-button-undo:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+.question-button-undo:visited {
+    color: gray;
+    text-decoration: none;
+}

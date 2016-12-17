@@ -6,7 +6,16 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-6 text-left">  <!-- TODO serverside code -->
+                        <!-- NOTE: when user hasn't accepted/starred, use the question-button-do class and set appropriate title -->
+                        <!-- NOTE: when user has accepted/starred, clicking will result in undo, so use the question-button-undo class and set appropriate title -->
+                        <h4>
+                            <a class="question-button-undo" href="#">
+                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-xs-6 text-right">
                         <h4 class="persian">{{ question.title }}</h4>
                     </div>
                 </div>
@@ -77,13 +86,30 @@
     <div class="col-xs-11">
         <div class="panel {% if answer.accepted %}panel-success{% else %}panel-default{% endif %}">
             <div class="panel-heading">
-                {% if answer.accepted %}
-                <span class="glyphicon glyphicon-ok"></span>
-                پاسخ نهایی
-                {% else %}
-                <span class="glyphicon glyphicon-comment"></span>
-                پاسخ
-                {% endif %}
+                <div class="row">
+                    <div class="col-xs-6 text-left">  <!-- TODO serverside code -->
+                        <!-- NOTE: when user hasn't accepted/starred, use the question-button-do class and set appropriate title -->
+                        <!-- NOTE: when user has accepted/starred, clicking will result in undo, so use the question-button-undo class and set appropriate title -->
+                        <h4>
+                            <a class="question-button-do" href="#">
+                                <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="انتخاب به عنوان پاسخ نهایی"></span>
+                            </a>
+                            <a class="question-button-undo" href="#">
+                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        {% if answer.accepted %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                        پاسخ نهایی
+                        {% else %}
+                        <span class="glyphicon glyphicon-comment"></span>
+                        پاسخ
+                        {% endif %}
+                    </div>
+                </div>
+
             </div>
             <div class="panel-body">
                 <div class="row">
