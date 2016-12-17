@@ -57,7 +57,11 @@
 }
 
 .parallex {
-	background: url('../img/parallex.png');
+	background: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url('../img/parallex.png');
     height: 768px;
     background-attachment: fixed;
     background-position: center;
