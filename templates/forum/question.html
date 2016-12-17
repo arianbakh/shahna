@@ -24,15 +24,13 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col-xs-4 text-left">
+                    <div class="col-xs-9 text-left">
                         {% for tag in question.tags.all %}
                                 <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
                         {% endfor %}
-                    </div>
-                    <div class="col-xs-5 text-center">
-                            {% for field in question.fields.all %}
-                                    <u>{{ field.name }}</u>
-                            {% endfor %}
+                        {% for field in question.fields.all %}
+                            <a href="#"><span class="persian-light">#{{field.name}}</span></a>
+                        {% endfor %}
                     </div>
                     <div class="col-xs-1 text-center">
                         <span class="glyphicon glyphicon-comment"></span>
@@ -51,10 +49,17 @@
             <div class="panel-footer">
                 <div class="row">
                     {% if question.user == user %}
-                        <div class="persian-light col-xs-2">
-                            <a href="{% url 'edit_question' question_id=question.id %}">ویرایش</a> <a href="{% url 'remove_question' question_id=question.id %}">حذف</a>
+                        <div class="persian-light col-xs-3 text-left">
+                            <a class="btn btn-primary btn-sm" href="{% url 'edit_question' question_id=question.id %}">
+                                ویرایش
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'remove_question' question_id=question.id %}">
+                                حذف
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
                         </div>
-                        <div class="persian-light col-xs-10">
+                        <div class="persian-light col-xs-9">
                             پرسشگر : {{ question.user.profile.name }}
                         </div>
                     {% else %}
@@ -68,58 +73,6 @@
     </div>
 </div>
 
-<!-- TODO remove -->
-<div class="row">
-    <div class="col-xs-11">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <span class="glyphicon glyphicon-ok"></span>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <span class="persian-light">
-                            {{ question.description }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <span class="persian-light">
-                    پاسخ‌دهنده : {{ question.user.profile.name }}
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
-</div>
-
-<!-- TODO remove -->
-<div class="row">
-    <div class="col-xs-11">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span class="glyphicon glyphicon-comment"></span>
-                <span>gholam</span>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <span class="persian-light">
-                            {{ question.description }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <span class="persian-light">
-                    پاسخ‌دهنده : {{ question.user.profile.name }}
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-1"></div>  <!-- because offset isn't rtl -->
-</div>
 
 {% for answer in answers %}
 <div class="row">
@@ -144,10 +97,17 @@
             <div class="panel-footer">
                 <div class="row">
                     {% if answer.user == user %}
-                        <div class="persian-light col-xs-2">
-                            <a href="{% url 'edit_answer' answer_id=answer.id %}">ویرایش</a> <a href="{% url 'remove_answer' answer_id=answer.id question_id=question.id %}">حذف</a>
+                        <div class="persian-light col-xs-3 text-left">
+                            <a class="btn btn-primary btn-sm" href="{% url 'edit_answer' answer_id=answer.id %}">
+                                ویرایش
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'remove_answer' answer_id=answer.id question_id=question.id %}">
+                                حذف
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
                         </div>
-                        <div class="persian-light col-xs-10">
+                        <div class="persian-light col-xs-9">
                             پاسخ‌دهنده : {{ answer.user.profile.name }}
                         </div>
                     {% else %}
