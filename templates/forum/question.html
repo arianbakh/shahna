@@ -10,9 +10,15 @@
                         <!-- NOTE: when user hasn't accepted/starred, use the question-button-do class and set appropriate title -->
                         <!-- NOTE: when user has accepted/starred, clicking will result in undo, so use the question-button-undo class and set appropriate title -->
                         <h4>
-                            <a class="question-button-undo" href="#">
-                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
-                            </a>
+                            {% if question.is_stared %}
+                                <a class="question-button-undo" href="{% url 'unstar_question' question_id=question.id %}">
+                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
+                                </a>
+                            {% else %}
+                                <a class="question-button-do" href="{% url 'star_question' question_id=question.id %}">
+                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="ستاره کردن"></span>
+                                </a>
+                            {% endif %}
                         </h4>
                     </div>
                     <div class="col-xs-6 text-right">
@@ -47,7 +53,7 @@
                         <span class="glyphicon glyphicon-eye-open"></span>
                         <span>{{ question.views }}</span>
                         <span class="glyphicon glyphicon-star"></span>
-                        <span>{{ question.stars }}</span>
+                        <span>{{ question.stars.count }}</span>
                     </div>
                 </div>
 
@@ -87,17 +93,30 @@
         <div class="panel {% if answer.accepted %}panel-success{% else %}panel-default{% endif %}">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6 text-left">  <!-- TODO serverside code -->
-                        <!-- NOTE: when user hasn't accepted/starred, use the question-button-do class and set appropriate title -->
-                        <!-- NOTE: when user has accepted/starred, clicking will result in undo, so use the question-button-undo class and set appropriate title -->
-                        <h4>
-                            <a class="question-button-do" href="#">
-                                <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="انتخاب به عنوان پاسخ نهایی"></span>
-                            </a>
-                            <a class="question-button-undo" href="#">
+                    <div class="col-xs-6 text-left">
+                        {% if question.user == user %}
+                            <h4>
+                                {% if not answer.accepted %}
+                                    <a class="question-button-do" href="{% url 'accept_answer' answer_id=answer.id %}">
+                                        <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="انتخاب به عنوان پاسخ نهایی"></span>
+                                    </a>
+                                {% else %}
+                                    <a class="question-button-undo" href="{% url 'reject_answer' answer_id=answer.id %}">
+                                        <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="حذف به عنوان پاسخ نهایی"></span>
+                                    </a>
+                                {% endif %}
+                            </h4>
+                        {% endif %}
+                        {% if answer.is_stared %}
+                            <a class="question-button-undo" href="{% url 'unstar_answer' answer_id=answer.id %}">
                                 <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
                             </a>
-                        </h4>
+                        {% else %}
+                            <a class="question-button-do" href="{% url 'star_answer' answer_id=answer.id %}">
+                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="ستاره کردن"></span>
+                            </a>
+                        {% endif %}
+
                     </div>
                     <div class="col-xs-6 text-right">
                         {% if answer.accepted %}

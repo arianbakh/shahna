@@ -99,6 +99,7 @@ def remove_answer(request, answer_id, question_id):
     a.save()
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
+
 def question_page(request, question_id):
     try:
         q  = Question.objects.filter(published='P').get(id=question_id)
@@ -106,6 +107,11 @@ def question_page(request, question_id):
         raise Http404
     q.answer_count = q.answer_set.all().count()
     answers = Answer.objects.filter(question=q, published='P')
+
+    if request.user != None:
+        q.is_stared = q.stars.filter(id=request.user.id).exists()
+        for a in answers:
+            a.is_stared = a.stars.filter(id=request.user.id).exists()
     answer_form = None
     user = request.user
     if user.is_authenticated():
@@ -121,3 +127,73 @@ def question_page(request, question_id):
             answer_form = AnswerForm()
     return render(request, 'forum/question.html', {'question': q, 'answers': answers, 'answer_form': answer_form})
 
+
+@login_required
+def star_question(request, question_id):
+    try:
+        q  = Question.objects.filter(published='P').get(id=question_id)
+    except Question.DoesNotExist:
+        raise Http404
+    if not q.stars.filter(id=request.user.id).exists():
+        q.stars.add(request.user)
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
+
+
+@login_required
+def unstar_question(request, question_id):
+    try:
+        q  = Question.objects.filter(published='P').get(id=question_id)
+    except Question.DoesNotExist:
+        raise Http404
+    if q.stars.filter(id=request.user.id).exists():
+        q.stars.remove(request.user)
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
+
+
+@login_required
+def star_answer(request, answer_id):
+    try:
+        a = Answer.objects.get(id=answer_id)
+    except Answer.DoesNotExist:
+        raise Http404
+    if not a.stars.filter(id=request.user.id).exists():
+        a.stars.add(request.user)
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
+
+
+@login_required
+def unstar_answer(request, answer_id):
+    try:
+        a = Answer.objects.get(id=answer_id)
+    except Answer.DoesNotExist:
+        raise Http404
+    if a.stars.filter(id=request.user.id).exists():
+        a.stars.remove(request.user)
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
+
+
+@login_required
+def accept_answer(request, answer_id):
+    try:
+        a = Answer.objects.get(id=answer_id)
+    except Answer.DoesNotExist:
+        raise Http404
+    if a.question.user != request.user:
+        raise Http404 # TODO replace with forbiden
+    a.question.answer_set.all().update(accepted=False)
+    a.accepted = True
+    a.save()
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
+
+
+@login_required
+def reject_answer(request, answer_id):
+    try:
+        a = Answer.objects.get(id=answer_id)
+    except Answer.DoesNotExist:
+        raise Http404
+    if a.question.user != request.user:
+        raise Http404 # TODO replace with forbiden
+    a.accepted=False
+    a.save()
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))

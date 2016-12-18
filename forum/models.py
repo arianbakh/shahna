@@ -20,7 +20,7 @@ class Question(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(verbose_name=_("Title"), max_length=50)
     description = models.TextField(verbose_name=_("Description"), default="")
-    stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
+    stars = models.ManyToManyField(User, verbose_name=_("Stars"), related_name='question_user_stars')
     views = models.PositiveIntegerField(verbose_name=_("Views"), default=0)
     PUBLISH_STATE_CHOICES = (
         ('N', _("New")),
@@ -40,6 +40,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question)
     description = models.TextField(verbose_name=_("Description"), default="")
     accepted = models.BooleanField(verbose_name=_("Accepted"), default=False)
+    stars = models.ManyToManyField(User, verbose_name=_("Stars"), related_name='answer_user_stars')
     PUBLISH_STATE_CHOICES = (
         ('N', _("New")),
         ('R', _("Removed")),
