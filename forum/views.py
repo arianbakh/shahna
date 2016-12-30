@@ -1,6 +1,4 @@
-import re
-
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -28,7 +26,7 @@ def home(request):
         page = 1
     page_questions = paginator.page(page)
     for question in page_questions:
-        question.answer_count = question.answer_set.all().count()
+        question.answer_count = question.answer_set.all().count()  # TODO annotate
     return render_to_response('index.html', {'questions': page_questions}, context_instance=RequestContext(request))
 
 
@@ -220,7 +218,22 @@ def search(request):
     if request.method == 'GET':
         query = request.GET.get('query')
         if query:
-            pass  # TODO
+            questions = Question.objects.filter(published='P')
+            for word in query.strip().split():
+                questions = questions.filter(Q(title__icontains=word) | Q(description__icontains=word))
+            questions = questions.annotate(cnt=Count('stars')).order_by('-cnt')
+            paginator = Paginator(questions, PAGE_SIZE)
+            page = request.GET.get('page')
+            if not page:
+                page = 1
+            try:
+                page = int(page)
+            except ValueError:
+                page = 1
+            page_questions = paginator.page(page)
+            for question in page_questions:
+                question.answer_count = question.answer_set.all().count()  # TODO annotate
+            return render_to_response('index.html', {'questions': page_questions, 'query': query}, context_instance=RequestContext(request))
         else:
             return HttpResponseBadRequest()
     else:

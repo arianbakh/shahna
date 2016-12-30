@@ -17,7 +17,7 @@
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
-                    <input type="text" name="query" class="form-control persian-light" placeholder="جستجوی سوالات" dir="rtl">
+                    <input type="text" name="query" class="form-control persian-light" placeholder="جستجوی سوالات" dir="rtl" value="{{ query }}">
                 </div>
             </form>
         </div>
@@ -76,7 +76,7 @@
             <ul class="pagination">
                 {% if questions.has_next %}
                     <li>
-                        <a href="?page={{ questions.next_page_number }}">
+                        <a href="?page={{ questions.next_page_number }}{% if query %}&query={{ query }}{% endif %}">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -92,7 +92,7 @@
 
                 {% if questions.has_previous %}
                     <li>
-                        <a href="?page={{ questions.previous_page_number }}">
+                        <a href="?page={{ questions.previous_page_number }}{% if query %}&query={{ query }}{% endif %}">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>

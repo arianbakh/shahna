@@ -16,6 +16,7 @@ class UniversityField(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Question(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(verbose_name=_("Title"), max_length=50)
