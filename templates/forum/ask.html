@@ -25,6 +25,10 @@
                   {% endfor %}
                 </ul>
               </div>
+            {% elif field.html_name == 'tags' %}
+            <div class="col-xs-10 persian-light">
+              {{ field|add_class:"form-control"|attr:"placeholder:فیزیک_هسته‌ای فیزیک_کوانتوم" }}
+            </div>
             {% else %}
             <div class="col-xs-10 persian-light">
               {{ field|add_class:"form-control" }}
