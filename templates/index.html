@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load forum_extras %}
+
 {% block full-width-image %}
 <div class="parallex">
     <span class="parallex-text persian">شبکه هم‌افزایی نخبگان ایرانی</span>
@@ -8,14 +10,16 @@
 {% block content %}
     <div class="row row-top-buffer">
         <div class="col-xs-12">
-            <div class="input-group" dir="ltr"> <!-- changed default dir to get bootstrap's button addons working! -->
-                <span class="input-group-btn" dir="rtl">
-                    <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-                <input type="text" class="form-control persian-light" placeholder="جستجوی سوالات" dir="rtl">
-            </div>
+            <form action="{% url 'search' %}" method="get">
+                <div class="input-group" dir="ltr"> <!-- changed default dir to get bootstrap's button addons working! -->
+                    <span class="input-group-btn" dir="rtl">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                    <input type="text" name="query" class="form-control persian-light" placeholder="جستجوی سوالات" dir="rtl">
+                </div>
+            </form>
         </div>
     </div>
 
@@ -67,25 +71,38 @@
             {% endfor %}
         </div>
 
-        <!-- TODO serverside code -->
         <!-- NOTE: order is reversed because of rtl -->
         <div class="col-xs-12 text-center">
             <ul class="pagination">
-                <li>  <!--NOTE: add disabled class when current page is the last page -->
-                    <a href="#">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">۵</a></li>
-                <li><a href="#">۴</a></li>
-                <li><a href="#">۳</a></li>
-                <li><a href="#">۲</a></li>
-                <li class="active"><a href="#">۱</a></li>  <!-- NOTE: add active class when this is the current page -->
-                <li class="disabled">  <!-- NOTE: add disabled class when current page is the first page -->
-                    <a href="#">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
+                {% if questions.has_next %}
+                    <li>
+                        <a href="?page={{ questions.next_page_number }}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="active"><a href="#">{{ questions.number|persian_number }}</a></li>
+
+                {% if questions.has_previous %}
+                    <li>
+                        <a href="?page={{ questions.previous_page_number }}">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled">
+                        <a href="#">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
