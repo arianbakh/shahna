@@ -4,7 +4,7 @@ from django.conf.urls import url, include, patterns
 from django.contrib.auth import views as auth_views
 
 from forum.views import home, ask, question_page, edit_question, remove_question, star_question, unstar_question, \
-    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search
+    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, fields
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^star_answer/(?P<answer_id>[0-9]+)/$', star_answer, name='star_answer'),
     url(r'^unstar_answer/(?P<answer_id>[0-9]+)/$', unstar_answer, name='unstar_answer'),
     url(r'^search/?$', search, name='search'),
+    url(r'^tags/(?P<tag_id>[0-9]+)/?$', tags, name='tags'),
+    url(r'^fields/(?P<field_id>[0-9]+)/?$', fields, name='fields'),
 ]
 
 if settings.DEBUG:

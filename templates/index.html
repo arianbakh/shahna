@@ -23,6 +23,17 @@
         </div>
     </div>
 
+    {% if page_desc %}
+        <div class="row row-top-buffer">
+            <div class="col-xs-12 text-center">
+                <h4 class="persian-light">
+                    <span class="persian-light">سوالات در مورد</span>
+                    <span class="persian">{{ page_desc }}</span>
+                </h4>
+            </div>
+        </div>
+    {% endif %}
+
     <div class="row row-top-buffer">
         <div class="col-xs-12">
             {% for q in questions %}
@@ -51,10 +62,10 @@
                         <div class="row">
                             <div class="col-xs-6 text-left">
                                 {% for tag in q.tags.all %}
-                                        <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
+                                    <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
                                 {% endfor %}
                                 {% for field in q.fields.all %}
-                                    <a href="#"><span class="persian-light">#{{field.name}}</span></a>
+                                    <a href="{% url 'fields' field_id=field.id %}"><span class="persian-light">#{{ field.name }}</span></a>
                                 {% endfor %}
                             </div>
                             <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
@@ -82,13 +93,13 @@
                     </li>
                 {% else %}
                     <li class="disabled">
-                        <a href="#">
+                        <a>
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                 {% endif %}
 
-                <li class="active"><a href="#">{{ questions.number|persian_number }}</a></li>
+                <li class="disabled"><a>{{ questions.number|persian_number }}</a></li>
 
                 {% if questions.has_previous %}
                     <li>
@@ -98,7 +109,7 @@
                     </li>
                 {% else %}
                     <li class="disabled">
-                        <a href="#">
+                        <a>
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>

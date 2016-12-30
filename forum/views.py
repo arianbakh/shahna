@@ -2,12 +2,12 @@ from django.db.models import Q, Count
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 
 
-from forum.models import Question, Answer, Tag
+from forum.models import Question, Answer, Tag, UniversityField
 from forum.forms import QuestionForm, AnswerForm
 
 
@@ -233,8 +233,42 @@ def search(request):
             page_questions = paginator.page(page)
             for question in page_questions:
                 question.answer_count = question.answer_set.all().count()  # TODO annotate
-            return render_to_response('index.html', {'questions': page_questions, 'query': query}, context_instance=RequestContext(request))
+            return render_to_response('index.html', {'questions': page_questions, 'query': query, 'page_desc': query}, context_instance=RequestContext(request))
         else:
-            return HttpResponseBadRequest()
+            return HttpResponseRedirect('/')
     else:
         raise Http404
+
+
+def tags(request, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    questions = tag.question_set.all().annotate(cnt=Count('stars')).order_by('-cnt')
+    paginator = Paginator(questions, PAGE_SIZE)
+    page = request.GET.get('page')
+    if not page:
+        page = 1
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+    page_questions = paginator.page(page)
+    for question in page_questions:
+        question.answer_count = question.answer_set.all().count()  # TODO annotate
+    return render_to_response('index.html', {'questions': page_questions, 'page_desc': tag.name}, context_instance=RequestContext(request))
+
+
+def fields(request, field_id):
+    field = UniversityField.objects.get(id=field_id)
+    questions = field.question_set.all().annotate(cnt=Count('stars')).order_by('-cnt')
+    paginator = Paginator(questions, PAGE_SIZE)
+    page = request.GET.get('page')
+    if not page:
+        page = 1
+    try:
+        page = int(page)
+    except ValueError:
+        page = 1
+    page_questions = paginator.page(page)
+    for question in page_questions:
+        question.answer_count = question.answer_set.all().count()  # TODO annotate
+    return render_to_response('index.html', {'questions': page_questions, 'page_desc': field.name}, context_instance=RequestContext(request))

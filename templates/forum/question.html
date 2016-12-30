@@ -41,10 +41,10 @@
                 <div class="row">
                     <div class="col-xs-6 text-left">
                         {% for tag in question.tags.all %}
-                                <a href="#"><span class="persian-light">#{{tag.name}}</span></a>
+                            <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
                         {% endfor %}
                         {% for field in question.fields.all %}
-                            <a href="#"><span class="persian-light">#{{field.name}}</span></a>
+                            <a href="{% url 'fields' field_id=field.id %}"><span class="persian-light">#{{ field.name }}</span></a>
                         {% endfor %}
                     </div>
                     <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
