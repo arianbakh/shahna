@@ -33,7 +33,7 @@ def home(request):
 
 
 def _get_or_create_tags(data):
-    raw_tags = data.split(' ')
+    raw_tags = data.strip().split()
     tags = []
     for t in raw_tags:
         tag = Tag.objects.filter(name=t).first()
