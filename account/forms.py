@@ -9,7 +9,8 @@ from account.models import User, Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('name', 'nickname', 'avatar', 'email', 'phone', 'city', 'country', 'university', 'current_work_place', 'student_number',)
+        fields = ('name', 'nickname', 'avatar', 'email', 'phone', 'city', 'country', 'university', 'university_field', \
+                  'current_work_place', 'student_number',)
         widgets = {
                 'student_number': forms.TextInput(attrs={'placeholder': _('Optional')}),
         }

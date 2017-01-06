@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
+
+from forum.models import UniversityField
 
 def _avatar_file_name(instance, filename):
     format = filename
@@ -33,5 +33,6 @@ class Profile(models.Model):
     )
     access_level = models.CharField(verbose_name=_("User access level"), max_length=1,
                                              choices=USER_STATE_CHOICES)
+    university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"))
 
 

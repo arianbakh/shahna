@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 13:03+0330\n"
+"POT-Creation-Date: 2017-01-06 16:02+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,74 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: account/forms.py:14
+#: account/forms.py:15
 msgid "Optional"
 msgstr "اختیاری"
 
-#: account/forms.py:20
+#: account/forms.py:21
 #, python-format
 msgid "Please keep filesize under %s."
 msgstr "لطفا حجم فایل کمتر از %s باشد"
 
-#: account/models.py:11
+#: account/models.py:18
 msgid "Avatar"
 msgstr "عکس پروفایل"
 
-#: account/models.py:12
+#: account/models.py:19
 msgid "Name"
 msgstr "نام اصلی"
 
-#: account/models.py:13
+#: account/models.py:20
 msgid "Nickname (Display name)"
 msgstr "نام مستعار (نامی که نمایش داده می‌شود)"
 
-#: account/models.py:14
+#: account/models.py:21
 msgid "Email"
 msgstr "ایمیل"
 
-#: account/models.py:15
+#: account/models.py:22
 msgid "Mobile phone"
 msgstr "شماره موبایل"
 
-#: account/models.py:16
+#: account/models.py:23
 msgid "Current city"
 msgstr "شهر محل اقامت فعلی"
 
-#: account/models.py:17
+#: account/models.py:24
 msgid "Current country"
 msgstr "کشور محل اقامت فعلی"
 
-#: account/models.py:18
+#: account/models.py:25
 msgid "Graduated university"
 msgstr "دانشگاه اخذ مدرک کارشناسی"
 
-#: account/models.py:19
+#: account/models.py:26
 msgid "Current work place"
 msgstr "محل کار فعلی"
 
-#: account/models.py:20
+#: account/models.py:27
 msgid "Student number"
 msgstr "شماره دانشجویی"
 
-#: account/models.py:21 forum/models.py:24 forum/models.py:44
+#: account/models.py:28 forum/models.py:24 forum/models.py:44
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: account/models.py:23 forum/models.py:27 forum/models.py:46
+#: account/models.py:30 forum/models.py:27 forum/models.py:46
 msgid "New"
 msgstr "جدید"
 
-#: account/models.py:24 forum/models.py:29 forum/models.py:48
+#: account/models.py:31 forum/models.py:29 forum/models.py:48
 msgid "Rejected"
 msgstr "رد شده"
 
-#: account/models.py:25 forum/models.py:43
+#: account/models.py:32 forum/models.py:43
 msgid "Accepted"
 msgstr "قبول‌شده"
 
-#: account/models.py:27
+#: account/models.py:34
 msgid "User access level"
 msgstr "سطح دسترسی کاربر"
+
+#: account/models.py:36
+#| msgid "Fields"
+msgid "Field"
+msgstr "رشته‌"
 
 #: forum/forms.py:8
 msgid "Please enter tags separated by space ( at least 3 tags)"
