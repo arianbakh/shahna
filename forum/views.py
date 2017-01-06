@@ -120,13 +120,6 @@ def question_page(request, question_id):
         q = Question.objects.filter(published='P').get(id=question_id)
     except Question.DoesNotExist:
         raise Http404
-    q.answer_count = q.answer_set.all().count()
-    answers = Answer.objects.filter(question=q, published='P')
-
-    if request.user is not None:
-        q.is_stared = q.stars.filter(id=request.user.id).exists()
-        for a in answers:
-            a.is_stared = a.stars.filter(id=request.user.id).exists()
     answer_form = None
     user = request.user
     if user.is_authenticated():
@@ -136,10 +129,22 @@ def question_page(request, question_id):
                 answer = answer_form.save(commit=False)
                 answer.published = 'P'
                 answer.question = q
-                answer.user = request.user
+                answer.user = user
+                if user == q.user:
+                    q.answer_set.all().update(accepted=False)
+                    answer.accepted = True
                 answer.save()
         else:
             answer_form = AnswerForm()
+
+    q.answer_count = q.answer_set.all().count()
+    answers = Answer.objects.filter(question=q, published='P').order_by('-accepted')
+
+    if request.user != None:
+        q.is_stared = q.stars.filter(id=request.user.id).exists()
+        for a in answers:
+            a.is_stared = a.stars.filter(id=request.user.id).exists()
+
     return render(request, 'forum/question.html', {'question': q, 'answers': answers, 'answer_form': answer_form})
 
 

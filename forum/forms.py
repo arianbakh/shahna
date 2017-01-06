@@ -17,6 +17,9 @@ class QuestionForm(forms.ModelForm):
                 'required': _("Select at least one field"),
             },
         }
+        lables = {
+                'tags': _('Tags'),
+        }
 
     def clean_tags(self):
         data = self.cleaned_data['tags']

@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
                         <span class="glyphicon glyphicon-comment"></span>
-                        <span>{{ question.answer_set.count }}</span>
+                        <span>{{ answers.count }}</span>
                         <span class="glyphicon glyphicon-eye-open"></span>
                         <span>{{ question.views }}</span>
                         <span class="glyphicon glyphicon-star"></span>
@@ -85,7 +85,6 @@
         </div>
     </div>
 </div>
-
 
 {% for answer in answers %}
 <div class="row">
