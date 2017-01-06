@@ -1,7 +1,18 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
 {% block content %}
 <div class="row row-top-buffer">
     <div class="col-xs-8 col-xs-offset-2">
+        {% if user_block %}
+            <div class="row">
+                <h1 class="persian text-center bg-warning"> {% trans "You are blocked" %}</h1>
+                <h2 class="persian text-center bg-warning"> {% trans "Unblock time:" %}
+                    {% if user_block.unlimited %}{% trans "Unlimited" %}{% else %}
+                    {{ user_block.till_date }} {%endif%}</h2>
+                <h2 class="persian text-center bg-warning"> {% trans "Block reason:" %} {{ user_block.reason }}</h2>
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col-xs-8">
                 <img src="{{MEDIA_URL}}{{profile.avatar}}" height="200" width="200">
@@ -70,4 +81,47 @@
         </div>
     </div>
 </div>
+{% if request.user.is_superuser %}
+    <hr><br>
+    <div class="persian-light">
+    تاریخچه‌ی تخلفات:
+    </div>
+    {% for b in block_history %}
+        <div class="row">
+             <p class="persian text-center"> {% trans "Unblock time:" %}
+                    {% if b.unlimited %}{% trans "Unlimited" %}{% else %}
+                    {{ b.till_date }} {%endif%}</p>
+            <p class="persian text-center bg-warning"> {% trans "Block reason:" %} {{ b.reason }}</p>
+
+        </div>
+    {% endfor %}
+    <div class="row">
+        <form class="form-horizontal" method="post" action="{% url 'block_user' user_id=profile.user.id %}">
+            {% csrf_token %}
+            {% for field in block_user_form %}
+                <div class="form-group">
+                {% if field.errors %}
+                  <ul class="list-unstyled">
+                    {% for error in field.errors %}
+                      <li class="persian text-danger">{{ error|escape }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="col-xs-10 persian-light">
+                  {{ field|add_class:"form-control" }}
+                </div>
+                <div class="col-xs-2 persian">
+                  {{ field.label_tag }}
+                </div>
+              </div>
+            {% endfor %}
+            <div class="col-xs-10 persian-light">
+                <div class="form-group">
+                    <button class="btn btn-default persian-light" type="submit">بلاک کاربر</button>
+                </div>
+            </div>
+            <div class="col-xs-2"></div>  <!-- because offset isn't rtl -->
+        </form>
+    </div>
+{% endif %}
 {% endblock %}

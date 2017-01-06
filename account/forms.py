@@ -3,8 +3,9 @@ from django.conf import settings
 from django.template.defaultfilters import filesizeformat
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.admin.widgets import AdminDateWidget
 
-from account.models import User, Profile
+from account.models import Profile, BlockUser
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -20,3 +21,10 @@ class ProfileForm(forms.ModelForm):
         if pic._size > settings.MAX_UPLOAD_SIZE:
             raise ValidationError(_("Please keep filesize under %s.") % filesizeformat(settings.MAX_UPLOAD_SIZE))
         return pic
+
+
+class BlockUserForm(forms.ModelForm):
+    block_time = forms.ChoiceField(choices=BlockUser.DURATION_CHOICES)
+    class Meta:
+        model = BlockUser
+        fields = ('reason',)

@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from account.models import BlockUser
+
+@admin.register(BlockUser)
+class BlockUserAdmin(admin.ModelAdmin):
+    list_display = ('user', 'till_date',)

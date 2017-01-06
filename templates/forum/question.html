@@ -170,7 +170,7 @@
 <div class="row">
     <div class="col-xs-11">
     {% if user.is_authenticated %}
-        <form class="form-horizontal" method="post">
+        <form class="form-horizontal" method="post" action="{% url 'new_answer' question_id=question.id %}">
             {% csrf_token %}
             {% for field in answer_form %}
                 <div class="form-group">

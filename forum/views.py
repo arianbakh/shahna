@@ -12,6 +12,7 @@ from forum.models import Question, Answer, Tag, UniversityField
 from forum.forms import QuestionForm, AnswerForm
 
 from account.models import Profile
+from account.decorators import unblocked_user_required
 
 
 PAGE_SIZE = 2  # TODO
@@ -46,7 +47,7 @@ def _get_or_create_tags(data):
     return tags
 
 
-@login_required
+@unblocked_user_required
 def ask(request):
     if request.method == 'POST':
         question_form = QuestionForm(request.POST)
@@ -65,7 +66,7 @@ def ask(request):
     return render(request, 'forum/ask.html', {'question_form': question_form})
 
 
-@login_required
+@unblocked_user_required
 def edit_question(request, question_id):
     try:
         q = Question.objects.get(id=question_id)
@@ -82,7 +83,7 @@ def edit_question(request, question_id):
     return render(request, 'forum/ask.html', {'question_form': question_form})
 
 
-@login_required
+@unblocked_user_required
 def remove_question(request, question_id):
     try:
         q = Question.objects.get(id=question_id)
@@ -93,7 +94,7 @@ def remove_question(request, question_id):
     return HttpResponseRedirect(reverse('home'))
 
 
-@login_required
+@unblocked_user_required
 def edit_answer(request, answer_id):
     try:
         a = Answer.objects.get(id=answer_id)
@@ -109,7 +110,7 @@ def edit_answer(request, answer_id):
     return render(request, 'forum/edit_answer.html', {'answer_form': answer_form})
 
 
-@login_required
+@unblocked_user_required
 def remove_answer(request, answer_id, question_id):
     try:
         a = Answer.objects.get(id=answer_id)
@@ -125,7 +126,24 @@ def question_page(request, question_id):
         q = Question.objects.filter(published='P').get(id=question_id)
     except Question.DoesNotExist:
         raise Http404
-    answer_form = None
+    answer_form = AnswerForm()
+
+    q.answer_count = q.answer_set.all().count()
+    answers = Answer.objects.filter(question=q, published='P').order_by('-accepted')
+
+    if request.user != None:
+        q.is_stared = q.stars.filter(id=request.user.id).exists()
+        for a in answers:
+            a.is_stared = a.stars.filter(id=request.user.id).exists()
+
+    return render(request, 'forum/question.html', {'question': q, 'answers': answers, 'answer_form': answer_form})
+
+@unblocked_user_required
+def new_answer(request, question_id):
+    try:
+        q = Question.objects.filter(published='P').get(id=question_id)
+    except Question.DoesNotExist:
+        raise Http404
     user = request.user
     if user.is_authenticated():
         if request.method == 'POST':
@@ -140,21 +158,9 @@ def question_page(request, question_id):
                     q.answer_set.all().update(accepted=False)
                     answer.accepted = True
                 answer.save()
-        else:
-            answer_form = AnswerForm()
+    return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
-    q.answer_count = q.answer_set.all().count()
-    answers = Answer.objects.filter(question=q, published='P').order_by('-accepted')
-
-    if request.user != None:
-        q.is_stared = q.stars.filter(id=request.user.id).exists()
-        for a in answers:
-            a.is_stared = a.stars.filter(id=request.user.id).exists()
-
-    return render(request, 'forum/question.html', {'question': q, 'answers': answers, 'answer_form': answer_form})
-
-
-@login_required
+@unblocked_user_required
 def star_question(request, question_id):
     try:
         q = Question.objects.filter(published='P').get(id=question_id)
@@ -167,7 +173,7 @@ def star_question(request, question_id):
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
 
-@login_required
+@unblocked_user_required
 def unstar_question(request, question_id):
     try:
         q = Question.objects.filter(published='P').get(id=question_id)
@@ -180,7 +186,7 @@ def unstar_question(request, question_id):
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
 
-@login_required
+@unblocked_user_required
 def star_answer(request, answer_id):
     try:
         a = Answer.objects.get(id=answer_id)
@@ -193,7 +199,7 @@ def star_answer(request, answer_id):
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
-@login_required
+@unblocked_user_required
 def unstar_answer(request, answer_id):
     try:
         a = Answer.objects.get(id=answer_id)
@@ -206,7 +212,7 @@ def unstar_answer(request, answer_id):
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
-@login_required
+@unblocked_user_required
 def accept_answer(request, answer_id):
     try:
         a = Answer.objects.get(id=answer_id)
@@ -223,7 +229,7 @@ def accept_answer(request, answer_id):
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
-@login_required
+@unblocked_user_required
 def reject_answer(request, answer_id):
     try:
         a = Answer.objects.get(id=answer_id)

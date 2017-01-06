@@ -47,4 +47,16 @@ class Profile(models.Model):
             self.stars = 0
             self.save()
 
+class BlockUser(models.Model):
+    user = models.ForeignKey(User)
+    reason = models.TextField(verbose_name=_("Block reason"), default="", blank=True, null=True)
+
+    DURATION_CHOICES = (
+        (0, _("Unlimited")),
+        (1, _("1 Day")),
+        (3, _("3 Days")),
+        (7, _("7 Days")),
+    )
+    till_date = models.DateTimeField(verbose_name=_("Block till"))
+    unlimited = models.BooleanField(default=False)
 

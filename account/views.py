@@ -1,11 +1,16 @@
+from datetime import datetime, timedelta
+
+from django.contrib.auth.models import User
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.views.decorators.http import require_POST
 
 
-from account.forms import ProfileForm
-from account.models import Profile
+from account.forms import ProfileForm, BlockUserForm
+from account.models import Profile, BlockUser
 from account.utils import make_thumbnail
 
 def register(request):
@@ -38,10 +43,41 @@ def profile(request, user_id):
         profile = Profile.objects.get(user__id=user_id)
     except Profile.DoesNotExist:
         raise Http404()
-    return render(request, 'account/profile.html', {'profile': profile})
+
+    block_history = []
+    blockUserForm = None
+    if request.user and request.user.is_superuser:
+        block_history = BlockUser.objects.filter(user=profile.user)
+        blockUserForm = BlockUserForm()
+
+    user_block = None
+    if request.user == profile.user:
+        user_block = BlockUser.objects.filter(user=request.user, unlimited=True).first()
+        if not user_block:
+            user_block = BlockUser.objects.filter(user=request.user, till_date__gt=datetime.now()). \
+                order_by('-till_date').first()
+    return render(request, 'account/profile.html', {'profile': profile, 'block_user_form': blockUserForm, \
+                                                    'user_block': user_block, 'block_history':block_history})
 
 def myProfile(request):
     if request.user != None:
         return HttpResponseRedirect('/accounts/profile/%d/' % request.user.id)
     return HttpResponseRedirect('/accounts/login/')
 
+@require_POST
+def blockUser(request, user_id):
+    if request.user.is_superuser:
+        block_user_form = BlockUserForm(request.POST)
+        if block_user_form.is_valid():
+            block = block_user_form.save(commit=False)
+            duration = block_user_form.cleaned_data['block_time']
+            if int(duration) == 0:
+                block.till_date = datetime.now()
+                block.unlimited = True
+            else:
+                block.till_date = datetime.now() + timedelta(days=int(duration))
+            block.user = User.objects.get(id=user_id)
+            block.save()
+        return HttpResponseRedirect(reverse('profile', kwargs={"user_id": user_id}) )
+    else:
+       raise Http404()

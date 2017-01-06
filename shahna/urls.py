@@ -4,7 +4,7 @@ from django.conf.urls import url, include, patterns
 from django.contrib.auth import views as auth_views
 
 from forum.views import home, ask, question_page, edit_question, remove_question, star_question, unstar_question, \
-    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, fields
+    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, fields, new_answer
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^remove_question/(?P<question_id>[0-9]+)/$', remove_question, name='remove_question'),
     url(r'^star_question/(?P<question_id>[0-9]+)/$', star_question, name='star_question'),
     url(r'^unstar_question/(?P<question_id>[0-9]+)/$', unstar_question, name='unstar_question'),
+    url(r'^new_answer/(?P<question_id>[0-9]+)/$', new_answer, name='new_answer'),
     url(r'^edit_answer/(?P<answer_id>[0-9]+)/$', edit_answer, name='edit_answer'),
     url(r'^remove_answer/(?P<answer_id>[0-9]+)/(?P<question_id>[0-9]+)/$', remove_answer, name='remove_answer'),
     url(r'^accept_answer/(?P<answer_id>[0-9]+)/$', accept_answer, name='accept_answer'),
