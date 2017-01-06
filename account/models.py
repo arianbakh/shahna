@@ -35,4 +35,16 @@ class Profile(models.Model):
                                              choices=USER_STATE_CHOICES)
     university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"))
 
+    def change_star(self, count):
+        '''
+        :param count: Number of stars (can be negative and reduce stars)
+        :return: Nothing
+        '''
+        if self.stars + count >= 0:
+            self.stars += count
+            self.save()
+        else:
+            self.stars = 0
+            self.save()
+
 

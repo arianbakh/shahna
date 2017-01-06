@@ -2,7 +2,10 @@ from __future__ import unicode_literals
 from datetime import date
 
 from django.db import models
+from django.conf import settings
+from django.dispatch import receiver
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_delete
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -35,6 +38,10 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_("tags"))
     fields = models.ManyToManyField(UniversityField, verbose_name=_("Fields"))
 
+@receiver(pre_delete, sender=Question)
+def remove_stars(sender, instance, using, **kwargs):
+    instance.user.profile.change_star(-1 * settings.STAR_RULES['ASKING_QUESTION'])
+
 
 class Answer(models.Model):
     user = models.ForeignKey(User)
@@ -50,3 +57,6 @@ class Answer(models.Model):
     )
     published = models.CharField(verbose_name=_("Publish state"), max_length=1,
                                              choices=PUBLISH_STATE_CHOICES, default='N')
+@receiver(pre_delete, sender=Answer)
+def remove_stars(sender, instance, using, **kwargs):
+    instance.user.profile.change_star(-1 * settings.STAR_RULES['ANSWERING'])

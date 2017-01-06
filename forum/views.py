@@ -1,14 +1,17 @@
+from django.conf import settings
 from django.db.models import Q, Count
+from django.template import RequestContext
 from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
-from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 
 from forum.models import Question, Answer, Tag, UniversityField
 from forum.forms import QuestionForm, AnswerForm
+
+from account.models import Profile
 
 
 PAGE_SIZE = 2  # TODO
@@ -54,6 +57,8 @@ def ask(request):
             question.save()
             question_form.save_m2m()
             question.tags.add(*_get_or_create_tags(question_form.cleaned_data['tags']))
+            profile = Profile.objects.get(user=request.user)
+            profile.change_star(settings.STAR_RULES['ASKING_QUESTION'])
             return HttpResponseRedirect('/')
     else:
         question_form = QuestionForm()
@@ -130,6 +135,7 @@ def question_page(request, question_id):
                 answer.published = 'P'
                 answer.question = q
                 answer.user = user
+                user.profile.change_star(settings.STAR_RULES['ANSWERING'])
                 if user == q.user:
                     q.answer_set.all().update(accepted=False)
                     answer.accepted = True
@@ -156,6 +162,8 @@ def star_question(request, question_id):
         raise Http404
     if not q.stars.filter(id=request.user.id).exists():
         q.stars.add(request.user)
+        question_owner_profile = Profile.objects.get(user=q.user)
+        question_owner_profile.change_star(settings.STAR_RULES['STAR_QUESTION'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
 
@@ -167,6 +175,8 @@ def unstar_question(request, question_id):
         raise Http404
     if q.stars.filter(id=request.user.id).exists():
         q.stars.remove(request.user)
+        question_owner_profile = Profile.objects.get(user=q.user)
+        question_owner_profile.change_star(-1 * settings.STAR_RULES['STAR_QUESTION'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
 
@@ -178,6 +188,8 @@ def star_answer(request, answer_id):
         raise Http404
     if not a.stars.filter(id=request.user.id).exists():
         a.stars.add(request.user)
+        answer_owner_profile = Profile.objects.get(user=a.user)
+        answer_owner_profile.change_star(settings.STAR_RULES['STAR_ANSWER'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
@@ -189,6 +201,8 @@ def unstar_answer(request, answer_id):
         raise Http404
     if a.stars.filter(id=request.user.id).exists():
         a.stars.remove(request.user)
+        answer_owner_profile = Profile.objects.get(user=a.user)
+        answer_owner_profile.change_star(-1 * settings.STAR_RULES['STAR_ANSWER'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
@@ -203,6 +217,9 @@ def accept_answer(request, answer_id):
     a.question.answer_set.all().update(accepted=False)
     a.accepted = True
     a.save()
+    if a.user != a.question.user:
+        answer_owner_profile = Profile.objects.get(user=a.user)
+        answer_owner_profile.change_star(settings.STAR_RULES['ACCEPTING_ANSWER'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
@@ -216,6 +233,9 @@ def reject_answer(request, answer_id):
         raise Http404  # TODO replace with forbidden
     a.accepted = False
     a.save()
+    if a.user != a.question.user:
+        answer_owner_profile = Profile.objects.get(user=a.user)
+        answer_owner_profile.change_star(-1 * settings.STAR_RULES['ACCEPTING_ANSWER'])
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 
 
