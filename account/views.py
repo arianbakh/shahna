@@ -1,12 +1,12 @@
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, Http404
-from django.core.context_processors import csrf
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
+from django.conf import settings
 
 
 from account.forms import ProfileForm
 from account.models import Profile
+from account.utils import make_thumbnail
 
 def register(request):
     if request.method == 'POST':
@@ -17,6 +17,7 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.avatar = profile_form.cleaned_data['avatar']
+            make_thumbnail(settings.MEDIA_ROOT + 'avatars/' + profile.user.username)
             profile.save()
             return HttpResponseRedirect('/accounts/register/complete')
     else:

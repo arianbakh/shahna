@@ -1,4 +1,5 @@
 import os
+from os.path import join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -95,7 +96,7 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = 'collected_static/'
 
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = join(BASE_DIR, 'media/')
 
 LANGUAGES = (
     ('fa', 'Persian'),
@@ -107,3 +108,5 @@ LOCALE_PATHS = (
 )
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MAX_UPLOAD_SIZE = 500 * 1024 # 500 KB

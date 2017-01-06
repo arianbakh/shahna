@@ -6,9 +6,16 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
+def _avatar_file_name(instance, filename):
+    format = filename
+    splited = filename.split('.')
+    if len(splited) > 1:
+        format = '.' + splited[-1]
+    return '/'.join(['avatars', instance.user.username+format])
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(verbose_name=_("Avatar"), upload_to='avatars/', max_length=255)
+    avatar = models.ImageField(verbose_name=_("Avatar"), upload_to=_avatar_file_name, max_length=255)
     name = models.CharField(verbose_name=_("Name"), max_length=15)
     nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15)
     email = models.EmailField(verbose_name=_("Email"), max_length=50)
