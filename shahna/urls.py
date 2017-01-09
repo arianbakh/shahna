@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls import url, include, patterns
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
+
 
 from forum.views import home, ask, question_page, edit_question, remove_question, star_question, unstar_question, \
     edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, fields, new_answer
@@ -26,6 +28,7 @@ urlpatterns = [
     url(r'^search/?$', search, name='search'),
     url(r'^tags/(?P<tag_id>[0-9]+)/?$', tags, name='tags'),
     url(r'^fields/(?P<field_id>[0-9]+)/?$', fields, name='fields'),
+    url(r'^about_us/$', TemplateView.as_view(template_name='about_us.html')),
 ]
 
 if settings.DEBUG:
