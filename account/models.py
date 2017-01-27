@@ -18,7 +18,6 @@ class Profile(models.Model):
     avatar = models.ImageField(verbose_name=_("Avatar"), upload_to=_avatar_file_name, max_length=255)
     name = models.CharField(verbose_name=_("Name"), max_length=15)
     nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15)
-    email = models.EmailField(verbose_name=_("Email"), max_length=50)
     phone = models.CharField(verbose_name=_("Mobile phone"), max_length=15)
     city = models.CharField(verbose_name=_("Current city"), max_length=15)
     country = models.CharField(verbose_name=_("Current country"), max_length=15)

@@ -4,13 +4,26 @@ from django.template.defaultfilters import filesizeformat
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import AdminDateWidget
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from account.models import Profile, BlockUser
+
+class UserCreationFormWithEmail(UserCreationForm):
+    username = forms.EmailField(max_length=64, label=_("Email"), help_text=_("Email Address"))
+
+    def clean_email(self):
+        email = self.cleaned_data['username']
+        return email
+
+
+class AuthenticationFormWithEmail(AuthenticationForm):
+    username = forms.EmailField(max_length=64, label=_("Email"), help_text=_("Email Address"))
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('name', 'nickname', 'avatar', 'email', 'phone', 'city', 'country', 'university', 'university_field', \
+        fields = ('name', 'nickname', 'avatar', 'phone', 'city', 'country', 'university', 'university_field', \
                   'current_work_place', 'student_number',)
         widgets = {
                 'student_number': forms.TextInput(attrs={'placeholder': _('Optional')}),

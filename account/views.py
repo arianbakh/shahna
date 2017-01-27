@@ -1,21 +1,30 @@
 from datetime import datetime, timedelta
 
-from django.contrib.auth.models import User
-from django.shortcuts import render_to_response, render
-from django.http import HttpResponseRedirect, Http404
-from django.contrib.auth.forms import UserCreationForm
-from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.contrib.auth import views as auth_views
+from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.http import require_POST
+from django.shortcuts import render_to_response, render
 
 
-from account.forms import ProfileForm, BlockUserForm
-from account.models import Profile, BlockUser
 from account.utils import make_thumbnail
+from account.models import Profile, BlockUser
+from account.forms import ProfileForm, BlockUserForm, UserCreationFormWithEmail, AuthenticationFormWithEmail
+
+
+def login(request, template_name='account/login.html',
+           redirect_field_name = '/profile/',
+           authentication_form = AuthenticationFormWithEmail,
+           extra_context=None):
+    return auth_views.login(request, template_name, redirect_field_name,
+                            authentication_form)
+
 
 def register(request):
     if request.method == 'POST':
-        user_form = UserCreationForm(request.POST)
+        user_form = UserCreationFormWithEmail(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
@@ -26,7 +35,7 @@ def register(request):
             profile.save()
             return HttpResponseRedirect('/accounts/register/complete')
     else:
-        user_form = UserCreationForm()
+        user_form = UserCreationFormWithEmail()
         profile_form = ProfileForm()
     return render(request, 'register/registration_form.html', {
         'user_form': user_form,
