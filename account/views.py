@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.http import require_POST
 from django.shortcuts import render_to_response, render
+from django.contrib.auth.decorators import login_required
 
 
 from account.utils import make_thumbnail
@@ -25,21 +26,15 @@ def login(request, template_name='account/login.html',
 def register(request):
     if request.method == 'POST':
         user_form = UserCreationFormWithEmail(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.avatar = profile_form.cleaned_data['avatar']
-            make_thumbnail(settings.MEDIA_ROOT + 'avatars/' + profile.user.username)
+            profile = Profile.objects.create(user=user)
             profile.save()
             return HttpResponseRedirect('/accounts/register/complete')
     else:
         user_form = UserCreationFormWithEmail()
-        profile_form = ProfileForm()
     return render(request, 'register/registration_form.html', {
         'user_form': user_form,
-        'profile_form': profile_form
     })
 
 
@@ -67,6 +62,25 @@ def profile(request, user_id):
                 order_by('-till_date').first()
     return render(request, 'account/profile.html', {'profile': profile, 'block_user_form': blockUserForm, \
                                                     'user_block': user_block, 'block_history':block_history})
+
+@login_required
+def edit_profile(request):
+    my_profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=my_profile)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.avatar = profile_form.cleaned_data['avatar']
+            if my_profile.avatar != profile.avatar:
+                make_thumbnail(settings.MEDIA_ROOT + 'avatars/' + profile.user.username)
+            profile.save()
+            return HttpResponseRedirect('/accounts/profile/')
+    else:
+        profile_form = ProfileForm(instance=my_profile)
+    return render(request, 'account/edit_profile.html', {
+        'profile_form': profile_form,
+    })
+
 
 def myProfile(request):
     if request.user != None:

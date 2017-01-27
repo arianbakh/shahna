@@ -15,14 +15,15 @@ def _avatar_file_name(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(verbose_name=_("Avatar"), upload_to=_avatar_file_name, max_length=255)
-    name = models.CharField(verbose_name=_("Name"), max_length=15)
-    nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15)
-    phone = models.CharField(verbose_name=_("Mobile phone"), max_length=15)
-    city = models.CharField(verbose_name=_("Current city"), max_length=15)
-    country = models.CharField(verbose_name=_("Current country"), max_length=15)
-    university = models.CharField(verbose_name=_("Graduated university"), max_length=50)
-    current_work_place = models.CharField(verbose_name=_("Current work place"), max_length=50)
+    avatar = models.ImageField(verbose_name=_("Avatar"), upload_to=_avatar_file_name, \
+            max_length=255, default="avatars/default.jpeg", blank=True, null=True)
+    name = models.CharField(verbose_name=_("Name"), max_length=15, blank=True, null=True)
+    nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15, blank=True, null=True)
+    phone = models.CharField(verbose_name=_("Mobile phone"), max_length=15, blank=True, null=True)
+    city = models.CharField(verbose_name=_("Current city"), max_length=15, blank=True, null=True)
+    country = models.CharField(verbose_name=_("Current country"), max_length=15, blank=True, null=True)
+    university = models.CharField(verbose_name=_("Graduated university"), max_length=50, blank=True, null=True)
+    current_work_place = models.CharField(verbose_name=_("Current work place"), max_length=50, blank=True, null=True)
     student_number = models.PositiveIntegerField(verbose_name=_("Student number"), blank=True, null=True)
     stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
     USER_STATE_CHOICES = (
@@ -32,7 +33,7 @@ class Profile(models.Model):
     )
     access_level = models.CharField(verbose_name=_("User access level"), max_length=1,
                                              choices=USER_STATE_CHOICES)
-    university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"))
+    university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"), blank=True, null=True)
 
     def change_star(self, count):
         '''

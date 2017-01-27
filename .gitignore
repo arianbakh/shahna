@@ -3,6 +3,8 @@ collected_static/*
 db.sqlite3
 media/*
 !media/PLACEHOLDER
+!media/avatars/PLACEHOLDER
+!media/avatars/default.jpeg
 
 # Numerous always-ignore extensions
 *.backup

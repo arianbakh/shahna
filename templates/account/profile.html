@@ -20,13 +20,13 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="persian text-center">{{ profile.name }}</h2>
+                <h2 class="persian text-center">{% if profile.name %}{{ profile.name }}{%endif%}</h2>
             </div>
         </div>
         {% if request.user == profile.user %}
                 <div class="row">
                     <div class="col-xs-8">
-                        <p class="persian-light">{{ profile.email }}</p>
+                        <p class="persian-light">{{ profile.user.username }}</p>
                     </div>
                     <div class="col-xs-4 persian-light">
                         <span class="glyphicon glyphicon-envelope"></span>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <p class="persian-light">{{ profile.phone }}</p>
+                        <p class="persian-light">{% if profile.phone %}{{ profile.phone }}{%else%} --- {%endif%}</p>
                     </div>
                     <div class="col-xs-4 persian-light">
                         <span class="glyphicon glyphicon-earphone"></span>
@@ -45,7 +45,7 @@
         {% endif %}
         <div class="row">
             <div class="col-xs-8">
-                <p class="persian-light">{{ profile.city }}</p>
+                <p class="persian-light">{% if profile.city %}{{ profile.city }}{%else%} --- {%endif%}</p>
             </div>
             <div class="col-xs-4 persian-light">
                 <span class="glyphicon glyphicon-globe"></span>
@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col-xs-8">
-                <p class="persian-light">{{ profile.university }}</p>
+                <p class="persian-light">{% if profile.university %}{{ profile.university }}{%else%} --- {%endif%}</p>
             </div>
             <div class="col-xs-4 persian-light">
                 <span class="glyphicon glyphicon-book"></span>
@@ -63,7 +63,7 @@
         </div>
         <div class="row">
             <div class="col-xs-8">
-                <p class="persian-light">{{ profile.current_work_place }}</p>
+                <p class="persian-light">{% if profile.current_work_place %}{{ profile.current_work_place }}{%else%} --- {%endif%}</p>
             </div>
             <div class="col-xs-4 persian-light">
                 <span class="glyphicon glyphicon-briefcase"></span>
@@ -79,6 +79,13 @@
                 امتیاز:
             </div>
         </div>
+        {% if request.user == profile.user %}
+            <div class="row">
+                <div class="col-xs-8">
+                    <a href="/accounts/edit_profile/" class="btn btn-default" role="button">ویرایش پروفایل</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% if request.user.is_superuser %}

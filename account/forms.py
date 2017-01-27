@@ -27,11 +27,12 @@ class ProfileForm(forms.ModelForm):
                   'current_work_place', 'student_number',)
         widgets = {
                 'student_number': forms.TextInput(attrs={'placeholder': _('Optional')}),
+                'avatar': forms.FileInput(),
         }
 
     def clean_avatar(self):
         pic = self.cleaned_data['avatar']
-        if pic._size > settings.MAX_UPLOAD_SIZE:
+        if pic.size > settings.MAX_UPLOAD_SIZE:
             raise ValidationError(_("Please keep filesize under %s.") % filesizeformat(settings.MAX_UPLOAD_SIZE))
         return pic
 
