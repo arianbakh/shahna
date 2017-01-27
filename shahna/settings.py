@@ -50,6 +50,7 @@ TEMPLATES = [
                 "django.core.context_processors.media",
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'account.context_processors.profile_completion_processor',
             ],
         },
     },

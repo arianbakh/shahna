@@ -53,6 +53,11 @@
               </a>
             </li>
             <li>
+              <a href="{% url 'myProfile' %}">
+                <span class="persian-light text-info">درصد تکمیل پروفایل {{ profile_completion }} %</span>
+              </a>
+            </li>
+            <li>
               <a href="#" data-toggle="tooltip" title="امتیاز">
                 <span>{{request.user.profile.stars}}</span>
                 <span class="glyphicon glyphicon-heart"></span>
