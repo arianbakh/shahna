@@ -77,6 +77,11 @@
                                 <span>{{ q.stars.count }}</span>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="persian-light col-xs-12">
+                                 پرسشگر : <a href="{% url 'profile' user_id=q.user.id %}">{{ q.user.profile.name }} </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

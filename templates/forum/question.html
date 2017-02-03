@@ -73,11 +73,11 @@
                             </a>
                         </div>
                         <div class="persian-light col-xs-9">
-                            پرسشگر : {{ question.user.profile.name }}
+                            پرسشگر : <a href="{% url 'profile' user_id=question.user.id %}">{{ question.user.profile.name }} </a>
                         </div>
                     {% else %}
                         <div class="persian-light col-xs-12">
-                            پرسشگر : {{ question.user.profile.name }}
+                            پرسشگر : <a href="{% url 'profile' user_id=question.user.id %}">{{ question.user.profile.name }} </a>
                         </div>
                     {% endif %}
                 </div>
