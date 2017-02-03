@@ -23,7 +23,7 @@
                 <h2 class="persian text-center">{% if profile.name %}{{ profile.name }}{%endif%}</h2>
             </div>
         </div>
-        {% if request.user == profile.user %}
+        {% if request.user == profile.user  or request.user.is_superuser %}
                 <div class="row">
                     <div class="col-xs-8">
                         <p class="persian-light">{{ profile.user.username }}</p>
