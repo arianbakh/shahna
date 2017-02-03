@@ -1,0 +1,10 @@
+<body style="margin: 0; padding: 0;"><center>{% load i18n %}{% get_current_language as LANGUAGE_CODE %}
+<div style="margin: 10px; width: 90%; page-break-inside: avoid; border: 1px solid; {% if LANGUAGE_CODE == "fa" %}direction: rtl; text-align: right{% else %}direction: ltr; text-align: left{% endif %}">
+{% block header %}<div style="padding: 8px 10px; margin-bottom: 5px; background: #a0be44; color: #fff; font-size: larger; font-weight: bold">
+{% block header_content %}{% endblock %}
+</div>{% endblock %}
+<div style="padding: 10px;">{% block message %}{% endblock %}</div>
+{% block footer %}<div style="padding: 10px; color: #444; border-top: 1px dashed; font-size: smaller">
+{% trans "© 2017 Shahna. All rights reserved." %}
+</div>{% endblock %}
+</div></center></body>
