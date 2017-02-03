@@ -144,3 +144,7 @@ body {
     color: gray;
     text-decoration: none;
 }
+
+.profile-completion-percentage {
+    color: #fff;
+}
