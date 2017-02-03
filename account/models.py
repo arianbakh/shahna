@@ -100,7 +100,7 @@ class NewUser(models.Model):
         if self.verification_key == None or self.verification_key == '':
             return True
         expiration_date = datetime.timedelta(days=email_verification_days())
-        return self.code_creation_date + expiration_date <= datetime.datetime.now()
+        return self.code_creation_date + expiration_date <= datetime.now()
 
     def verify(self):
         self.user.is_active = True

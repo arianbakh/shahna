@@ -36,7 +36,7 @@ def register(request):
             newUser.send_verification_email('fa')
             profile = Profile.objects.create(user=user)
             profile.save()
-            return HttpResponseRedirect('/accounts/register/complete')
+            return HttpResponseRedirect('/accounts/register/sent_email')
     else:
         user_form = UserCreationFormWithEmail()
     return render(request, 'register/registration_form.html', {
@@ -46,6 +46,10 @@ def register(request):
 
 def registration_complete(request):
     return render_to_response('register/registration_complete.html')
+
+
+def register_email_sent(request):
+    return render_to_response('register/email_sent.html')
 
 
 def profile(request, user_id):
@@ -116,7 +120,9 @@ def email_verify(request, token):
         nu = NewUser.objects.get(verification_key=token)
     except NewUser.DoesNotExist:
         raise Http404()
+    if nu.verification_key_expired:
+        return render(request, 'register/token_expired.html', {})
 
     nu.verify()
     nu.delete()
-    return HttpResponseRedirect(reverse('login'))
+    return HttpResponseRedirect(reverse('registration_complete'))
