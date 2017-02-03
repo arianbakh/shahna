@@ -5,13 +5,14 @@
 <div class="row row-top-buffer">
     <div class="col-xs-8 col-xs-offset-2">
         {% if user_block %}
-            <div class="row">
-                <h1 class="persian text-center bg-warning"> {% trans "You are blocked" %}</h1>
-                <h2 class="persian text-center bg-warning"> {% trans "Unblock time:" %}
+            <div class="row bg-warning ">
+                <h1 class="persian text-center"> {% trans "You are blocked" %}</h1>
+                <h2 class="persian text-center"> {% trans "Unblock time:" %}
                     {% if user_block.unlimited %}{% trans "Unlimited" %}{% else %}
-                    {{ user_block.till_date }} {%endif%}</h2>
-                <h2 class="persian text-center bg-warning"> {% trans "Block reason:" %} {{ user_block.reason }}</h2>
+                    {{ user_block.till_date_string }} {%endif%}</h2>
+                <h2 class="persian text-center"> {% trans "Block reason:" %} {{ user_block.reason }}</h2>
             </div>
+            <div class="row-top-buffer"></div>
         {% endif %}
         <div class="row">
             <div class="col-xs-8">
@@ -127,18 +128,30 @@
 </div>
 {% if request.user.is_superuser %}
     <hr><br>
-    <div class="persian-light">
+    <h2 class="persian-light text-center">
     تاریخچه‌ی تخلفات:
+    </h2>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr class="persian">
+                    <td>{% trans "Unblock time:" %}</td>
+                    <td>{% trans "Block reason:" %}</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in block_history %}
+                <tr class="persian-light">
+                    <td>{% if b.unlimited %}{% trans "Unlimited" %}{% else %}{{ b.till_date_string }}{%endif%}</td>
+                    <td>{{ b.reason }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    {% for b in block_history %}
-        <div class="row">
-             <p class="persian text-center"> {% trans "Unblock time:" %}
-                    {% if b.unlimited %}{% trans "Unlimited" %}{% else %}
-                    {{ b.till_date }} {%endif%}</p>
-            <p class="persian text-center bg-warning"> {% trans "Block reason:" %} {{ b.reason }}</p>
-
-        </div>
-    {% endfor %}
+    <h2 class="persian-light text-center">
+        اضافه کردن تخلف:
+    </h2>
     <div class="row">
         <form class="form-horizontal" method="post" action="{% url 'block_user' user_id=profile.user.id %}">
             {% csrf_token %}

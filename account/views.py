@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from account.utils import make_thumbnail
 from account.models import Profile, BlockUser
 from account.forms import ProfileForm, BlockUserForm, UserCreationFormWithEmail, AuthenticationFormWithEmail
+from persian_tools import get_jalali_string
 
 
 def login(request, template_name='account/login.html',
@@ -52,6 +53,8 @@ def profile(request, user_id):
     blockUserForm = None
     if request.user and request.user.is_superuser:
         block_history = BlockUser.objects.filter(user=profile.user)
+        for user_block_object in block_history:
+            user_block_object.till_date_string = get_jalali_string(user_block_object.till_date)
         blockUserForm = BlockUserForm()
 
     user_block = None
@@ -60,8 +63,10 @@ def profile(request, user_id):
         if not user_block:
             user_block = BlockUser.objects.filter(user=request.user, till_date__gt=datetime.now()). \
                 order_by('-till_date').first()
+            user_block.till_date_string = get_jalali_string(user_block.till_date)
+
     return render(request, 'account/profile.html', {'profile': profile, 'block_user_form': blockUserForm, \
-                                                    'user_block': user_block, 'block_history':block_history})
+                                                    'user_block': user_block, 'block_history': block_history})
 
 @login_required
 def edit_profile(request):

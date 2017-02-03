@@ -1,11 +1,5 @@
 from account.models import Profile
-
-
-def _convert_english_int_to_persian(english_int):
-    persian_string = u''
-    for english_character in str(english_int):
-        persian_string += unichr(ord(english_character) + 1728)
-    return persian_string
+from persian_tools import convert_english_digits_to_persian
 
 
 def profile_completion_processor(request):
@@ -22,5 +16,5 @@ def profile_completion_processor(request):
         else:
             if getattr(profile, field):
                 filled += 1
-    profile_completion = int(100.0 * filled / len(user_should_fill_fields))
-    return {'profile_completion': _convert_english_int_to_persian(profile_completion)}
+    profile_completion = str(int(100.0 * filled / len(user_should_fill_fields)))
+    return {'profile_completion': convert_english_digits_to_persian(profile_completion)}
