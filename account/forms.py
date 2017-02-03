@@ -26,7 +26,7 @@ class ProfileForm(forms.ModelForm):
         fields = ('name', 'nickname', 'avatar', 'phone', 'city', 'country', 'university', 'university_field', \
                   'current_work_place', 'student_number',)
         widgets = {
-                'student_number': forms.TextInput(attrs={'placeholder': _('Optional')}),
+                'student_number': forms.TextInput(attrs={'placeholder': _('88102030')}),
                 'avatar': forms.FileInput(),
         }
 

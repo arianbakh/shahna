@@ -20,10 +20,20 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="persian text-center">{% if profile.name %}{{ profile.name }}{%endif%}</h2>
+                <h2 class="persian text-center">{% if profile.nickname %}{{ profile.nickname }}{% else %} --- {%endif%}</h2>
             </div>
         </div>
+        <div class="row-top-buffer"></div>  <!-- adding top buffer in all cases -->
         {% if request.user == profile.user  or request.user.is_superuser %}
+                <div class="row">
+                    <div class="col-xs-8">
+                        <p class="persian-light">{% if profile.name %}{{ profile.name }}{% else %} --- {%endif%}</p>
+                    </div>
+                    <div class="col-xs-4 persian-light">
+                        <span class="glyphicon glyphicon-user"></span>
+                            نام اصلی:
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <p class="persian-light">{{ profile.user.username }}</p>
@@ -54,11 +64,38 @@
         </div>
         <div class="row">
             <div class="col-xs-8">
+                <p class="persian-light">{% if profile.country %}{{ profile.country }}{%else%} --- {%endif%}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-globe"></span>
+                کشور:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
                 <p class="persian-light">{% if profile.university %}{{ profile.university }}{%else%} --- {%endif%}</p>
             </div>
             <div class="col-xs-4 persian-light">
                 <span class="glyphicon glyphicon-book"></span>
                 دانشگاه:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{% if profile.university_field %}{{ profile.university_field }}{%else%} --- {%endif%}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-book"></span>
+                رشته:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <p class="persian-light">{% if profile.student_number %}{{ profile.student_number }}{%else%} --- {%endif%}</p>
+            </div>
+            <div class="col-xs-4 persian-light">
+                <span class="glyphicon glyphicon-book"></span>
+                شماره دانشجویی:
             </div>
         </div>
         <div class="row">
@@ -82,7 +119,7 @@
         {% if request.user == profile.user %}
             <div class="row">
                 <div class="col-xs-8">
-                    <a href="/accounts/edit_profile/" class="btn btn-default" role="button">ویرایش پروفایل</a>
+                    <a href="/accounts/edit_profile/" class="btn btn-default persian-light" role="button">ویرایش پروفایل</a>
                 </div>
             </div>
         {% endif %}
