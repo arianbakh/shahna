@@ -1,5 +1,10 @@
+import random
+from hashlib import sha1
 from os import path, stat
 from PIL import Image
+
+from django.conf import settings
+
 
 def image_thumb_name(name):
     parts = name.rsplit('.', 1)
@@ -16,3 +21,11 @@ def make_thumbnail(img):
             origin.save(thumb_adr, origin.format)
     except:
         pass
+
+def random_key_generator(email):
+    salt = sha1(str(random.random())).hexdigest()[:5]
+    key = sha1(salt + email.encode('utf-8')).hexdigest()
+    return key
+
+def email_verification_days():
+    return getattr(settings, 'EMAILAUTH_VERIFICATION_DAYS', 3)

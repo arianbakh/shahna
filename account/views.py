@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from account.utils import make_thumbnail
-from account.models import Profile, BlockUser
+from account.models import Profile, BlockUser, NewUser
 from account.forms import ProfileForm, BlockUserForm, UserCreationFormWithEmail, AuthenticationFormWithEmail
 
 
@@ -27,7 +27,13 @@ def register(request):
     if request.method == 'POST':
         user_form = UserCreationFormWithEmail(request.POST)
         if user_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
+            user.is_active = False
+            user.save()
+            newUser = NewUser.objects.create(user=user)
+            newUser.make_new_key()
+            newUser.save()
+            newUser.send_verification_email('fa')
             profile = Profile.objects.create(user=user)
             profile.save()
             return HttpResponseRedirect('/accounts/register/complete')
@@ -104,3 +110,13 @@ def blockUser(request, user_id):
         return HttpResponseRedirect(reverse('profile', kwargs={"user_id": user_id}) )
     else:
        raise Http404()
+
+def email_verify(request, token):
+    try:
+        nu = NewUser.objects.get(verification_key=token)
+    except NewUser.DoesNotExist:
+        raise Http404()
+
+    nu.verify()
+    nu.delete()
+    return HttpResponseRedirect(reverse('login'))

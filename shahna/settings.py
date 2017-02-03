@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'widget_tweaks',
     'account',
     'forum',
@@ -119,3 +120,12 @@ STAR_RULES = {
     'STAR_ANSWER': 3,
     'ACCEPTING_ANSWER': 5,
 }
+
+SITE_ID = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'me@gmail.com'
+#EMAIL_HOST_PASSWORD = 'pass'
