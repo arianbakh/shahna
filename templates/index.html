@@ -3,9 +3,11 @@
 {% load forum_extras %}
 
 {% block full-width-image %}
-<div class="parallex">
-    <span class="parallex-text persian">شبکه هم‌افزایی نخبگان ایرانی</span>
-</div>
+    {% if show_parallex %}
+    <div class="parallex">
+        <span class="parallex-text persian">شبکه هم‌افزایی نخبگان ایرانی</span>
+    </div>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <div class="row row-top-buffer">

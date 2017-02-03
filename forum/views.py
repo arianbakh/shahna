@@ -31,7 +31,10 @@ def home(request):
     page_questions = paginator.page(page)
     for question in page_questions:
         question.answer_count = question.answer_set.all().count()  # TODO annotate
-    return render_to_response('index.html', {'questions': page_questions}, context_instance=RequestContext(request))
+    context = {'questions': page_questions}
+    if page == 1:
+        context['show_parallex'] = True
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 def _get_or_create_tags(data):
