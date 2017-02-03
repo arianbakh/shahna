@@ -1,0 +1,5 @@
+{% block header %}{% block header_content %}{% endblock %}{% endblock %}
+
+{% block message %}{% endblock %}
+
+{% block footer %}© 2017 Shahna. All rights reserved.{% endblock %}

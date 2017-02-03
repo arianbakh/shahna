@@ -1,0 +1,11 @@
+{% extends "base_email.txt" %}{% load i18n %}
+
+{% block message %}
+Hi
+
+To activate your account on Bazaar, please click on the following link:
+
+    localhost:8000{% url 'email_verify' verification_key %}?l={{ lang }}
+
+The link above will expire in {{ expiration_days }} days
+{% endblock %}

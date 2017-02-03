@@ -1,0 +1,21 @@
+{% extends "base_email.html" %}{% load i18n %}
+
+{% block header_content %}
+    <div>
+        {% trans "Shahna &mdash; Activate your account" %}
+    </div>
+{% endblock %}
+
+{% block message %}
+
+<p>{% trans "Hi," %}</p>
+<p>{% trans "To activate your account on Shahna, please click on the following link:" %}</p>
+
+<quote>
+    <a href="localhost:8000{% url 'email_verify' verification_key %}">
+        localhost:8000{% url 'email_verify' verification_key %}
+    </a>
+</quote>
+
+<p>{% blocktrans %}The link above will expire in {{ expiration_days }} days.{% endblocktrans %}</p>
+{% endblock %}
