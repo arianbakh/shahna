@@ -131,6 +131,8 @@ def question_page(request, question_id):
     answer_form = AnswerForm()
 
     q.answer_count = q.answer_set.all().count()
+    q.views = q.views + 1
+    q.save()
     answers = Answer.objects.filter(question=q, published='P').order_by('-accepted')
 
     if request.user != None:
