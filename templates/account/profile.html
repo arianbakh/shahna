@@ -5,14 +5,30 @@
 <div class="row row-top-buffer">
     <div class="col-xs-8 col-xs-offset-2">
         {% if user_block %}
-            <div class="row bg-warning ">
-                <h1 class="persian text-center"> {% trans "You are blocked" %}</h1>
-                <h2 class="persian text-center"> {% trans "Unblock time:" %}
-                    {% if user_block.unlimited %}{% trans "Unlimited" %}{% else %}
-                    {{ user_block.till_date_string }} {%endif%}</h2>
-                <h2 class="persian text-center"> {% trans "Block reason:" %} {{ user_block.reason }}</h2>
+            <div class="alert alert-danger" role="alert">
+                <h1 class="persian text-center">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                    {% trans "You are blocked" %}
+                </h1>
+                <div class="row persian-light">
+                    <div class="col-xs-9">
+                        {% if user_block.unlimited %}{% trans "Unlimited" %}{% else %}
+                        {{ user_block.till_date_string }} {%endif%}
+                    </div>
+                    <div class="col-xs-3">
+                        {% trans "Unblock time:" %}
+                    </div>
+                </div>
+                <div class="row persian-light">
+                    <div class="col-xs-9">
+                        {{ user_block.reason }}
+                    </div>
+                    <div class="col-xs-3">
+                        {% trans "Block reason:" %}
+                    </div>
+                </div>
             </div>
-            <div class="row-top-buffer"></div>
+            <div class="row row-top-buffer"></div>
         {% endif %}
         <div class="row">
             <div class="col-xs-8">
