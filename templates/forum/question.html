@@ -108,17 +108,15 @@
                 <div class="row">
                     <div class="col-xs-6 text-left">
                         {% if question.user == user %}
-                            <h4>
-                                {% if not answer.accepted %}
-                                    <a class="question-button-do" href="{% url 'accept_answer' answer_id=answer.id %}">
-                                        <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="انتخاب به عنوان پاسخ نهایی"></span>
-                                    </a>
-                                {% else %}
-                                    <a class="question-button-undo" href="{% url 'reject_answer' answer_id=answer.id %}">
-                                        <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="حذف به عنوان پاسخ نهایی"></span>
-                                    </a>
-                                {% endif %}
-                            </h4>
+                            {% if not answer.accepted %}
+                                <a class="question-button-do" href="{% url 'accept_answer' answer_id=answer.id %}">
+                                    <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="انتخاب به عنوان پاسخ نهایی"></span>
+                                </a>
+                            {% else %}
+                                <a class="question-button-undo" href="{% url 'reject_answer' answer_id=answer.id %}">
+                                    <span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="حذف به عنوان پاسخ نهایی"></span>
+                                </a>
+                            {% endif %}
                         {% endif %}
                         {% if answer.is_stared %}
                             <a class="question-button-undo" href="{% url 'unstar_answer' answer_id=answer.id %}">
