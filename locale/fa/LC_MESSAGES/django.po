@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 19:21+0330\n"
+"POT-Creation-Date: 2017-02-03 14:05+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,11 +23,19 @@ msgstr ""
 msgid "You are blocked till %s"
 msgstr "شما تا زمان %s بلاک هستید"
 
-#: account/forms.py:16
+#: account/forms.py:12 account/forms.py:20
+msgid "Email"
+msgstr "ایمیل"
+
+#: account/forms.py:12 account/forms.py:20
+msgid "Email Address"
+msgstr "آدرس پست الکتورنیکی"
+
+#: account/forms.py:29
 msgid "Optional"
 msgstr "اختیاری"
 
-#: account/forms.py:22
+#: account/forms.py:36
 #, python-format
 msgid "Please keep filesize under %s."
 msgstr "لطفا حجم فایل کمتر از %s باشد"
@@ -36,17 +44,13 @@ msgstr "لطفا حجم فایل کمتر از %s باشد"
 msgid "Avatar"
 msgstr "عکس پروفایل"
 
-#: account/models.py:19
+#: account/models.py:20
 msgid "Name"
 msgstr "نام اصلی"
 
-#: account/models.py:20
+#: account/models.py:21
 msgid "Nickname (Display name)"
 msgstr "نام مستعار (نامی که نمایش داده می‌شود)"
-
-#: account/models.py:21
-msgid "Email"
-msgstr "ایمیل"
 
 #: account/models.py:22
 msgid "Mobile phone"
@@ -72,19 +76,19 @@ msgstr "محل کار فعلی"
 msgid "Student number"
 msgstr "شماره دانشجویی"
 
-#: account/models.py:28 forum/models.py:27 forum/models.py:51
+#: account/models.py:28 forum/models.py:35 forum/models.py:63
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: account/models.py:30 forum/models.py:30 forum/models.py:53
+#: account/models.py:30 forum/models.py:38 forum/models.py:65
 msgid "New"
 msgstr "جدید"
 
-#: account/models.py:31 forum/models.py:32 forum/models.py:55
+#: account/models.py:31 forum/models.py:40 forum/models.py:67
 msgid "Rejected"
 msgstr "رد شده"
 
-#: account/models.py:32 forum/models.py:50
+#: account/models.py:32 forum/models.py:62
 msgid "Accepted"
 msgstr "قبول‌شده"
 
@@ -96,29 +100,46 @@ msgstr "سطح دسترسی کاربر"
 msgid "Field"
 msgstr "رشته‌"
 
-#: account/models.py:52
+#: account/models.py:39
+msgid "Profile"
+msgstr "پروفایل"
+
+#: account/models.py:40
+msgid "Profiles"
+msgstr "پروفایل‌ها"
+
+#: account/models.py:56
 msgid "Block reason"
 msgstr "دلیل بلاک"
 
-#: account/models.py:55
+#: account/models.py:59 templates/account/profile.html:11
+#: templates/account/profile.html:99
 msgid "Unlimited"
 msgstr "نامحدود"
 
-#: account/models.py:56
+#: account/models.py:60
 msgid "1 Day"
 msgstr "۱ روز"
 
-#: account/models.py:57
+#: account/models.py:61
 msgid "3 Days"
 msgstr "۳ روز"
 
-#: account/models.py:58
+#: account/models.py:62
 msgid "7 Days"
 msgstr "۷ روز"
 
-#: account/models.py:60
+#: account/models.py:64
 msgid "Block till"
 msgstr "بلاک تا زمان"
+
+#: account/models.py:68
+msgid "User Block"
+msgstr "بلاک‌ کاربر"
+
+#: account/models.py:69
+msgid "User Blocks"
+msgstr "بلاک‌های کاربران"
 
 #: forum/forms.py:8
 msgid "Please enter tags separated by space ( at least 3 tags)"
@@ -128,7 +149,7 @@ msgstr "لطفا برچسب‌ها را وارد کنید (حداقل ۳ برچ�
 msgid "Select at least one field"
 msgstr "حداقل یک رشته را انتخاب کنید."
 
-#: forum/forms.py:21
+#: forum/forms.py:21 forum/models.py:17
 msgid "Tags"
 msgstr "برچسب‌ها"
 
@@ -136,58 +157,86 @@ msgstr "برچسب‌ها"
 msgid "Enter at least three diffrent tags"
 msgstr "لطفا حداقل سه برچسب متفاوت وارد کنید"
 
-#: forum/models.py:13 forum/models.py:17
+#: forum/models.py:13 forum/models.py:21
 msgid "name"
 msgstr "نام"
 
+#: forum/models.py:16
+#| msgid "Tags"
+msgid "Tag"
+msgstr "برچسب"
+
+#: forum/models.py:24
+msgid "University Field"
+msgstr "رشته دانشگاهی"
+
 #: forum/models.py:25
+msgid "University Fields"
+msgstr "رشته‌های دانشگاهی"
+
+#: forum/models.py:33
 msgid "Title"
 msgstr "عنوان"
 
-#: forum/models.py:26 forum/models.py:49
+#: forum/models.py:34 forum/models.py:61
 msgid "Description"
 msgstr "توضیحات"
 
-#: forum/models.py:28
+#: forum/models.py:36
 msgid "Views"
 msgstr "بازدید‌ها"
 
-#: forum/models.py:31 forum/models.py:54
+#: forum/models.py:39 forum/models.py:66
 msgid "Removed"
 msgstr "حذف شده"
 
-#: forum/models.py:33 forum/models.py:56
+#: forum/models.py:41 forum/models.py:68
 msgid "Published"
 msgstr "وضعیت انتشار"
 
-#: forum/models.py:35 forum/models.py:58
+#: forum/models.py:43 forum/models.py:70
 msgid "Publish state"
 msgstr "وضعیت انتشار"
 
-#: forum/models.py:37
+#: forum/models.py:45
 msgid "Upload time"
 msgstr "زمان بارگذاری"
 
-#: forum/models.py:38
+#: forum/models.py:46
 msgid "tags"
 msgstr "برچسب‌ها"
 
-#: forum/models.py:39
+#: forum/models.py:47
 msgid "Fields"
 msgstr "رشته‌ها"
 
-#: templates/account/profile.html:10
-#| msgid "You are blocked till %s"
+#: forum/models.py:50
+#| msgid "Description"
+msgid "Question"
+msgstr "پرسش"
+
+#: forum/models.py:51
+#| msgid "Description"
+msgid "Questions"
+msgstr "پرسش‌ها"
+
+#: forum/models.py:73
+msgid "Answer"
+msgstr "پاسخ"
+
+#: forum/models.py:74
+msgid "Answers"
+msgstr "پاسخ‌ها"
+
+#: templates/account/profile.html:9
 msgid "You are blocked"
 msgstr "شما بلاک هستید"
 
-#: templates/account/profile.html:11
-#| msgid "Upload time"
+#: templates/account/profile.html:10 templates/account/profile.html:98
 msgid "Unblock time:"
 msgstr "زمان خروج از بلاک:"
 
-#: templates/account/profile.html:12
-#| msgid "Block reason"
+#: templates/account/profile.html:13 templates/account/profile.html:101
 msgid "Block reason:"
 msgstr "دلیل بلاک:"
 

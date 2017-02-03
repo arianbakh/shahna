@@ -26,6 +26,7 @@ class QuestionForm(forms.ModelForm):
         tags = set(data.split(' '))
         if len(tags) < 3:
             raise ValidationError(_(u'Enter at least three diffrent tags'))
+        data.replace('#', '')
         return data
 
 class AnswerForm(forms.ModelForm):

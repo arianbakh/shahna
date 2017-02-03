@@ -86,11 +86,12 @@ def edit_question(request, question_id):
 @unblocked_user_required
 def remove_question(request, question_id):
     try:
-        q = Question.objects.get(id=question_id)
+        q = Question.objects.get(id=question_id, user=request.user)
     except Question.DoesNotExist:
         raise Http404
     q.published = 'R'
     q.save()
+    request.user.profile.change_star(-1 * settings.STAR_RULES['ASKING_QUESTION'])
     return HttpResponseRedirect(reverse('home'))
 
 
@@ -113,10 +114,11 @@ def edit_answer(request, answer_id):
 @unblocked_user_required
 def remove_answer(request, answer_id, question_id):
     try:
-        a = Answer.objects.get(id=answer_id)
+        a = Answer.objects.get(id=answer_id, user=request.user)
     except Answer.DoesNotExist:
         raise Http404
     a.published = 'R'
+    request.user.profile.change_star(-1 * settings.STAR_RULES['ANSWERING'])
     a.save()
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": a.question.id}))
 

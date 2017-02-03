@@ -12,9 +12,17 @@ from django.utils.translation import ugettext_lazy as _
 class Tag(models.Model):
     name = models.CharField(verbose_name=_("name"), max_length=50)
 
+    class Meta:
+        verbose_name=_("Tag")
+        verbose_name_plural=_("Tags")
+
 
 class UniversityField(models.Model):
     name = models.CharField(verbose_name=_("name"), max_length=50)
+
+    class Meta:
+        verbose_name=_("University Field")
+        verbose_name_plural=_("University Fields")
 
     def __unicode__(self):
         return self.name
@@ -38,6 +46,10 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_("tags"))
     fields = models.ManyToManyField(UniversityField, verbose_name=_("Fields"))
 
+    class Meta:
+        verbose_name=_("Question")
+        verbose_name_plural=_("Questions")
+
 @receiver(pre_delete, sender=Question)
 def remove_stars(sender, instance, using, **kwargs):
     instance.user.profile.change_star(-1 * settings.STAR_RULES['ASKING_QUESTION'])
@@ -57,6 +69,10 @@ class Answer(models.Model):
     )
     published = models.CharField(verbose_name=_("Publish state"), max_length=1,
                                              choices=PUBLISH_STATE_CHOICES, default='N')
+    class Meta:
+        verbose_name=_("Answer")
+        verbose_name_plural=_("Answers")
+
 @receiver(pre_delete, sender=Answer)
 def remove_stars(sender, instance, using, **kwargs):
     instance.user.profile.change_star(-1 * settings.STAR_RULES['ANSWERING'])

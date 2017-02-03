@@ -35,6 +35,10 @@ class Profile(models.Model):
                                              choices=USER_STATE_CHOICES)
     university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"), blank=True, null=True)
 
+    class Meta:
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
+
     def change_star(self, count):
         '''
         :param count: Number of stars (can be negative and reduce stars)
@@ -60,3 +64,6 @@ class BlockUser(models.Model):
     till_date = models.DateTimeField(verbose_name=_("Block till"))
     unlimited = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = _("User Block")
+        verbose_name_plural = _("User Blocks")
