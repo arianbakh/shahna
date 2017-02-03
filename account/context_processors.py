@@ -1,7 +1,7 @@
 from account.models import Profile
 
 def profile_completion_processor(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated():
         return {}
     profile = Profile.objects.get(user=request.user)
     user_should_fill_fields = ['avatar', 'name', 'nickname', 'phone', 'city', 'country', 'university', \
