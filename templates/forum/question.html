@@ -73,11 +73,25 @@
                             </a>
                         </div>
                         <div class="persian-light col-xs-9">
-                            پرسشگر : <a href="{% url 'profile' user_id=question.user.id %}">{{ question.user.profile.name }} </a>
+                            پرسشگر:
+                            <a href="{% url 'profile' user_id=question.user.id %}">
+                                {% if question.user.profile.nickname %}
+                                {{ question.user.profile.nickname }}
+                                {% else %}
+                                ناشناس
+                                {% endif %}
+                            </a>
                         </div>
                     {% else %}
                         <div class="persian-light col-xs-12">
-                            پرسشگر : <a href="{% url 'profile' user_id=question.user.id %}">{{ question.user.profile.name }} </a>
+                            پرسشگر:
+                            <a href="{% url 'profile' user_id=question.user.id %}">
+                                {% if question.user.profile.nickname %}
+                                {{ question.user.profile.nickname }}
+                                {% else %}
+                                ناشناس
+                                {% endif %}
+                            </a>
                         </div>
                     {% endif %}
                 </div>
@@ -152,11 +166,25 @@
                             </a>
                         </div>
                         <div class="persian-light col-xs-9">
-                            پاسخ‌دهنده : {{ answer.user.profile.name }}
+                            پاسخ‌دهنده:
+                            <a href="{% url 'profile' user_id=answer.user.id %}">
+                                {% if answer.user.profile.nickname %}
+                                {{ answer.user.profile.nickname }}
+                                {% else %}
+                                ناشناس
+                                {% endif %}
+                            </a>
                         </div>
                     {% else %}
                         <div class="persian-light col-xs-12">
-                            پاسخ‌دهنده : {{ answer.user.profile.name }}
+                            پاسخ‌دهنده:
+                            <a href="{% url 'profile' user_id=answer.user.id %}">
+                                {% if answer.user.profile.nickname %}
+                                {{ answer.user.profile.nickname }}
+                                {% else %}
+                                ناشناس
+                                {% endif %}
+                            </a>
                         </div>
                     {% endif %}
                 </div>

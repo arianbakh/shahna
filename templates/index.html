@@ -79,7 +79,14 @@
                         </div>
                         <div class="row">
                             <div class="persian-light col-xs-12">
-                                 پرسشگر : <a href="{% url 'profile' user_id=q.user.id %}">{{ q.user.profile.name }} </a>
+                                 پرسشگر :
+                                <a href="{% url 'profile' user_id=q.user.id %}">
+                                    {% if q.user.profile.nickname %}
+                                    {{ q.user.profile.nickname }}
+                                    {% else %}
+                                    ناشناس
+                                    {% endif %}
+                                </a>
                             </div>
                         </div>
                     </div>
