@@ -92,7 +92,7 @@ class NewUser(models.Model):
         message_html = render_to_string('account/verification_email.html', ctx)
 
         msg = EmailMultiAlternatives(subject, message_txt,
-                                     'test@test.com', [self.user.email])
+                                     'noreply@shahna.ir', [self.user.username,])
         msg.attach_alternative(message_html, "text/html")
         msg.send()
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-03 14:05+0330\n"
+"POT-Creation-Date: 2017-02-16 17:21+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,112 +32,124 @@ msgid "Email Address"
 msgstr "آدرس پست الکتورنیکی"
 
 #: account/forms.py:29
-msgid "Optional"
-msgstr "اختیاری"
+msgid "88102030"
+msgstr ""
 
 #: account/forms.py:36
 #, python-format
 msgid "Please keep filesize under %s."
 msgstr "لطفا حجم فایل کمتر از %s باشد"
 
-#: account/models.py:18
+#: account/models.py:24
 msgid "Avatar"
 msgstr "عکس پروفایل"
 
-#: account/models.py:20
+#: account/models.py:26
 msgid "Name"
 msgstr "نام اصلی"
 
-#: account/models.py:21
+#: account/models.py:27
 msgid "Nickname (Display name)"
 msgstr "نام مستعار (نامی که نمایش داده می‌شود)"
 
-#: account/models.py:22
+#: account/models.py:28
 msgid "Mobile phone"
 msgstr "شماره موبایل"
 
-#: account/models.py:23
+#: account/models.py:29
 msgid "Current city"
 msgstr "شهر محل اقامت فعلی"
 
-#: account/models.py:24
+#: account/models.py:30
 msgid "Current country"
 msgstr "کشور محل اقامت فعلی"
 
-#: account/models.py:25
+#: account/models.py:31
 msgid "Graduated university"
 msgstr "دانشگاه اخذ مدرک کارشناسی"
 
-#: account/models.py:26
+#: account/models.py:32
 msgid "Current work place"
 msgstr "محل کار فعلی"
 
-#: account/models.py:27
+#: account/models.py:33
 msgid "Student number"
 msgstr "شماره دانشجویی"
 
-#: account/models.py:28 forum/models.py:35 forum/models.py:63
+#: account/models.py:34 forum/models.py:35 forum/models.py:63
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: account/models.py:30 forum/models.py:38 forum/models.py:65
+#: account/models.py:36 forum/models.py:38 forum/models.py:65
 msgid "New"
 msgstr "جدید"
 
-#: account/models.py:31 forum/models.py:40 forum/models.py:67
+#: account/models.py:37 forum/models.py:40 forum/models.py:67
 msgid "Rejected"
 msgstr "رد شده"
 
-#: account/models.py:32 forum/models.py:62
+#: account/models.py:38 forum/models.py:62
 msgid "Accepted"
 msgstr "قبول‌شده"
 
-#: account/models.py:34
+#: account/models.py:40
 msgid "User access level"
 msgstr "سطح دسترسی کاربر"
 
-#: account/models.py:36
+#: account/models.py:42
 msgid "Field"
 msgstr "رشته‌"
 
-#: account/models.py:39
+#: account/models.py:45
 msgid "Profile"
 msgstr "پروفایل"
 
-#: account/models.py:40
+#: account/models.py:46
 msgid "Profiles"
 msgstr "پروفایل‌ها"
 
-#: account/models.py:56
+#: account/models.py:63
+msgid "verification key"
+msgstr ""
+
+#: account/models.py:66
+msgid "New user email"
+msgstr ""
+
+#: account/models.py:67
+msgid "New user emails"
+msgstr ""
+
+#: account/models.py:111
 msgid "Block reason"
 msgstr "دلیل بلاک"
 
-#: account/models.py:59 templates/account/profile.html:11
-#: templates/account/profile.html:99
+#: account/models.py:114 templates/account/profile.html:15
+#: templates/account/profile.html:161
 msgid "Unlimited"
 msgstr "نامحدود"
 
-#: account/models.py:60
+#: account/models.py:115
 msgid "1 Day"
 msgstr "۱ روز"
 
-#: account/models.py:61
+#: account/models.py:116
 msgid "3 Days"
 msgstr "۳ روز"
 
-#: account/models.py:62
+#: account/models.py:117
 msgid "7 Days"
 msgstr "۷ روز"
 
-#: account/models.py:64
+#: account/models.py:119
 msgid "Block till"
 msgstr "بلاک تا زمان"
 
-#: account/models.py:68
+#: account/models.py:123
 msgid "User Block"
 msgstr "بلاک‌ کاربر"
 
-#: account/models.py:69
+#: account/models.py:124
 msgid "User Blocks"
 msgstr "بلاک‌های کاربران"
 
@@ -162,7 +174,6 @@ msgid "name"
 msgstr "نام"
 
 #: forum/models.py:16
-#| msgid "Tags"
 msgid "Tag"
 msgstr "برچسب"
 
@@ -211,12 +222,10 @@ msgid "Fields"
 msgstr "رشته‌ها"
 
 #: forum/models.py:50
-#| msgid "Description"
 msgid "Question"
 msgstr "پرسش"
 
 #: forum/models.py:51
-#| msgid "Description"
 msgid "Questions"
 msgstr "پرسش‌ها"
 
@@ -228,17 +237,41 @@ msgstr "پاسخ"
 msgid "Answers"
 msgstr "پاسخ‌ها"
 
-#: templates/account/profile.html:9
+#: templates/account/profile.html:11
 msgid "You are blocked"
 msgstr "شما بلاک هستید"
 
-#: templates/account/profile.html:10 templates/account/profile.html:98
+#: templates/account/profile.html:19 templates/account/profile.html:154
 msgid "Unblock time:"
 msgstr "زمان خروج از بلاک:"
 
-#: templates/account/profile.html:13 templates/account/profile.html:101
+#: templates/account/profile.html:27 templates/account/profile.html:155
 msgid "Block reason:"
 msgstr "دلیل بلاک:"
+
+#: templates/account/verification_email.html:5
+msgid "Shahna &mdash; Activate your account"
+msgstr "شهنا - حساب کاربری خود را فعال کنید"
+
+#: templates/account/verification_email.html:11
+msgid "Hi,"
+msgstr "سلام،"
+
+#: templates/account/verification_email.html:12
+msgid "To activate your account on Shahna, please click on the following link:"
+msgstr "برای فعال کردن حساب کاربریتان لطفا بر روی لینک زیر کلیک کنید:"
+
+#: templates/account/verification_email.html:20
+#, python-format
+msgid "The link above will expire in %(expiration_days)s days."
+msgstr "لینک بالا پس از %(expiration_days)s روز منقضی می‌شود."
+
+#: templates/account/verification_email_subject.txt:2
+msgid "Please confirm your email address."
+msgstr "لطفا آدرس ایمیلتان را تایید کنید"
+
+#~ msgid "Optional"
+#~ msgstr "اختیاری"
 
 #~ msgid "Forever"
 #~ msgstr "همیشه"

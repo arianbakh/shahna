@@ -2,4 +2,4 @@
 
 {% block message %}{% endblock %}
 
-{% block footer %}© 2017 Shahna. All rights reserved.{% endblock %}
+{% block footer %}{% endblock %}

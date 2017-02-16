@@ -125,8 +125,8 @@ def email_verify(request, token):
         nu = NewUser.objects.get(verification_key=token)
     except NewUser.DoesNotExist:
         raise Http404()
-    if nu.verification_key_expired:
-        return render(request, 'register/token_expired.html', {})
+    #if nu.verification_key_expired:
+    #    return render(request, 'register/token_expired.html', {})
 
     nu.verify()
     nu.delete()
