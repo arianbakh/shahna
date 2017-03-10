@@ -1,0 +1,55 @@
+upstream upstream_shahna {
+    server unix:/tmp/gunicorn.shahna.sock fail_timeout=0;
+}
+
+server {
+    listen   80;
+    server_name 91.109.23.100;
+
+    location / {
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Scheme $scheme;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+        proxy_pass http://upstream_shahna;
+
+        client_max_body_size 20M;
+    }
+    
+    location /static/ {
+        alias /home/shahna/shahna/static/;
+        gzip on;
+        log_not_found off;
+        if ($query_string) {
+            expires max;
+            break;
+        }
+        expires +2w;
+    }
+    location /collected_static/ {
+        alias /home/shahna/shahna/collected_static/;
+        gzip on;
+        log_not_found off;
+        if ($query_string) {
+            expires max;
+            break;
+        }
+        expires +2w;
+    }
+
+    location /media/ {
+        alias /home/shahna/shahna/media/;
+        gzip on;
+        log_not_found off;
+        if ($query_string) {
+            expires max;
+            break;
+        }
+        expires +2w;
+    }
+    access_log /home/shahna/shahna/logs/nginx_access_log;
+    error_log /home/shahna/shahna/logs/nginx_error_log;
+}

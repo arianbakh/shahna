@@ -5,7 +5,7 @@ Hi
 
 To activate your account on Shahnay, please click on the following link:
 
-    localhost:8000{% url 'email_verify' verification_key %}?l={{ lang }}
+    http://shahnay.ir{% url 'email_verify' verification_key %}?l={{ lang }}
 
 The link above will expire in {{ expiration_days }} days
 {% endblock %}

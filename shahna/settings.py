@@ -92,7 +92,8 @@ USE_L10N = True
 USE_TZ = False
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/collected_static/'
+#STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
@@ -112,6 +113,43 @@ LOCALE_PATHS = (
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MAX_UPLOAD_SIZE = 500 * 1024 # 500 KB
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)3.3s %(asctime)22.22s %(process)7d [%(name)s:%(funcName)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': join(BASE_DIR, 'logs', 'django.log'),
+            'formatter': 'verbose'
+        },
+        'file_errors': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': join(BASE_DIR, 'logs', 'django.error'),
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+       'django.request': {
+            'handlers':['file', 'file_errors'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        '': {
+            'handlers':['file', 'file_errors'],
+            'propagate': True,
+            'level':'INFO',
+        },
+    }
+}
+
+
 
 STAR_RULES = {
     'ASKING_QUESTION': 1,
@@ -123,10 +161,10 @@ STAR_RULES = {
 
 SITE_ID = 1
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Shahnay <noreply@shahnay.ir>'
 EMAIL_HOST = 'localhost'
 EMAIL_USER = 'shahna'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
 #EMAIL_PORT = 587

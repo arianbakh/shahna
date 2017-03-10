@@ -73,7 +73,8 @@ def profile(request, user_id):
         if not user_block:
             user_block = BlockUser.objects.filter(user=request.user, till_date__gt=datetime.now()). \
                 order_by('-till_date').first()
-            user_block.till_date_string = get_jalali_string(user_block.till_date)
+            if user_block:
+		user_block.till_date_string = get_jalali_string(user_block.till_date)
 
     return render(request, 'account/profile.html', {'profile': profile, 'block_user_form': blockUserForm, \
                                                     'user_block': user_block, 'block_history': block_history})

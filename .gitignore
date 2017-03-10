@@ -6,6 +6,8 @@ media/avatars/*
 !media/avatars/default.jpeg
 media/upload/avatars/*
 !media/upload/avatars/PLACEHOLDER
+logs/*
+!logs/PLACEHOLDER
 
 # Numerous always-ignore extensions
 *.backup
