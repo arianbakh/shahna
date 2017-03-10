@@ -124,7 +124,7 @@ STAR_RULES = {
 SITE_ID = 1
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Shahna <noreply@shahna.ir>'
+DEFAULT_FROM_EMAIL = 'Shahnay <noreply@shahnay.ir>'
 EMAIL_HOST = 'localhost'
 EMAIL_USER = 'shahna'
 #EMAIL_USE_TLS = True

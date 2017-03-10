@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 17:21+0330\n"
+"POT-Creation-Date: 2017-03-10 15:07+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,15 +250,15 @@ msgid "Block reason:"
 msgstr "دلیل بلاک:"
 
 #: templates/account/verification_email.html:5
-msgid "Shahna &mdash; Activate your account"
-msgstr "شهنا - حساب کاربری خود را فعال کنید"
+msgid "Shahnay &mdash; Activate your account"
+msgstr "شهنای - حساب کاربری خود را فعال کنید"
 
 #: templates/account/verification_email.html:11
 msgid "Hi,"
 msgstr "سلام،"
 
 #: templates/account/verification_email.html:12
-msgid "To activate your account on Shahna, please click on the following link:"
+msgid "To activate your account on Shahnay, please click on the following link:"
 msgstr "برای فعال کردن حساب کاربریتان لطفا بر روی لینک زیر کلیک کنید:"
 
 #: templates/account/verification_email.html:20

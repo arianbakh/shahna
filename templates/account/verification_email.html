@@ -2,14 +2,14 @@
 
 {% block header_content %}
     <div>
-        {% trans "Shahna &mdash; Activate your account" %}
+        {% trans "Shahnay &mdash; Activate your account" %}
     </div>
 {% endblock %}
 
 {% block message %}
 
 <p>{% trans "Hi," %}</p>
-<p>{% trans "To activate your account on Shahna, please click on the following link:" %}</p>
+<p>{% trans "To activate your account on Shahnay, please click on the following link:" %}</p>
 
 <quote>
     <a href="localhost:8000{% url 'email_verify' verification_key %}">

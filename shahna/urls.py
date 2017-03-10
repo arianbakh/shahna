@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.conf.urls import url, include, patterns
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+from django.views.static import serve
 
 
 from forum.views import home, ask, question_page, edit_question, remove_question, star_question, unstar_question, \
@@ -33,5 +34,5 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     )
