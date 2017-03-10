@@ -88,6 +88,7 @@ def edit_question(request, question_id):
         question_form = QuestionForm(request.POST, instance=q)
         if question_form.is_valid():
             question = question_form.save()
+            question.tags.all().delete()
             question.tags.add(*_get_or_create_tags(question_form.cleaned_data['tags']))
             return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
     else:
