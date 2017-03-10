@@ -5,17 +5,25 @@ from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
-from django.contrib.auth.decorators import login_required
-
 
 from forum.models import Question, Answer, Tag, UniversityField
 from forum.forms import QuestionForm, AnswerForm
-
 from account.models import Profile
 from account.decorators import unblocked_user_required
+from shahna.settings import PAGE_SIZE, TRUNCATED_QUESTION_SIZE
 
 
-PAGE_SIZE = 2  # TODO
+def _truncate_description(description_text):
+    truncated_text = description_text[:TRUNCATED_QUESTION_SIZE]
+    if len(description_text) > TRUNCATED_QUESTION_SIZE:
+        truncated_text += '...'
+    return truncated_text
+
+
+def _truncate_question_descriptions(question_queryset):
+    for question in question_queryset:
+        question.truncated_description = _truncate_description(question.description)
+    return question_queryset
 
 
 def home(request):
@@ -34,6 +42,7 @@ def home(request):
     context = {'questions': page_questions}
     if page == 1:
         context['show_parallex'] = True
+    page_questions = _truncate_question_descriptions(page_questions)
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
@@ -271,6 +280,7 @@ def search(request):
             page_questions = paginator.page(page)
             for question in page_questions:
                 question.answer_count = question.answer_set.all().count()  # TODO annotate
+            page_questions = _truncate_question_descriptions(page_questions)
             return render_to_response('index.html', {'questions': page_questions, 'query': query, 'page_desc': query}, context_instance=RequestContext(request))
         else:
             return HttpResponseRedirect('/')
@@ -292,6 +302,7 @@ def tags(request, tag_id):
     page_questions = paginator.page(page)
     for question in page_questions:
         question.answer_count = question.answer_set.all().count()  # TODO annotate
+    page_questions = _truncate_question_descriptions(page_questions)
     return render_to_response('index.html', {'questions': page_questions, 'page_desc': tag.name}, context_instance=RequestContext(request))
 
 
@@ -309,4 +320,5 @@ def fields(request, field_id):
     page_questions = paginator.page(page)
     for question in page_questions:
         question.answer_count = question.answer_set.all().count()  # TODO annotate
+    page_questions = _truncate_question_descriptions(page_questions)
     return render_to_response('index.html', {'questions': page_questions, 'page_desc': field.name}, context_instance=RequestContext(request))

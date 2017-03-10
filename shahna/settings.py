@@ -132,3 +132,6 @@ EMAIL_USER = 'shahna'
 #EMAIL_PORT = 587
 #EMAIL_HOST_USER = 'me@gmail.com'
 #EMAIL_HOST_PASSWORD = 'pass'
+
+PAGE_SIZE = 10
+TRUNCATED_QUESTION_SIZE = 128  # characters
