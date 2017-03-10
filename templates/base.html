@@ -37,6 +37,14 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="{% url 'home' %}">
+                <span class="persian-light">خانه</span>
+                <span class="glyphicon glyphicon-home"></span>
+              </a>
+            </li>
+          </ul>
           <ul class="nav navbar-nav navbar-left">
 
             {% if request.user.is_authenticated %}

@@ -58,15 +58,15 @@
 
 .parallex {
 	background: linear-gradient(
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.3)
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
     ),
     url('../img/parallex.jpg');
-    height: 768px;
-    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 72px;
+    padding-bottom: 72px;
 }
 
 .navbar {
@@ -74,9 +74,6 @@
 }
 
 .parallex-text {
-    position: absolute;
-    top: 346px;
-    right: 15%;
     color: white;
     font-size: 72px;
 }
