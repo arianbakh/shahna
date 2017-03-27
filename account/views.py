@@ -87,9 +87,8 @@ def edit_profile(request):
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
             profile.avatar = profile_form.cleaned_data['avatar']
-            if my_profile.avatar != profile.avatar:
-                make_thumbnail(settings.MEDIA_ROOT + 'avatars/' + profile.user.username)
             profile.save()
+            make_thumbnail(profile.avatar.path)
             return HttpResponseRedirect('/accounts/profile/')
     else:
         profile_form = ProfileForm(instance=my_profile)

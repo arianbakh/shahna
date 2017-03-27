@@ -9,7 +9,7 @@ from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
-from account.utils import random_key_generator, email_verification_days
+from account.utils import random_key_generator, email_verification_days, image_thumb_name
 from forum.models import UniversityField
 
 def _avatar_file_name(instance, filename):
@@ -56,6 +56,14 @@ class Profile(models.Model):
         else:
             self.stars = 0
             self.save()
+
+    # I added two methods becuase I couldn't pass arg in templates
+    # and handling them in template was easier than view
+    def get_avatar_40x40(self):
+        return image_thumb_name(self.avatar.name, "40x40")
+
+    def get_avatar_200x200(self):
+        return image_thumb_name(self.avatar.name, "200x200")
 
 class NewUser(models.Model):
     user = models.ForeignKey(User)
