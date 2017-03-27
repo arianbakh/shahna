@@ -20,6 +20,9 @@ class Tag(models.Model):
 class UniversityField(models.Model):
     name = models.CharField(verbose_name=_("name"), max_length=50)
 
+    def get_as_tag(self):
+        return self.name.replace(' ', '_')
+
     class Meta:
         verbose_name=_("University Field")
         verbose_name_plural=_("University Fields")
