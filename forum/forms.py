@@ -5,6 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from forum.models import Question, Answer
 
 class QuestionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(QuestionForm, self).__init__(*args, **kwargs)
+        self.fields['tags'].label = _("Tags")
+
     tags = forms.CharField(max_length=255, help_text=_("Please enter tags separated by space ( at least 3 tags)"))
     class Meta:
         model = Question
