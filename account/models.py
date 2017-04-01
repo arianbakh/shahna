@@ -8,6 +8,7 @@ from django.utils import translation
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.core.validators import RegexValidator
 
 from account.utils import random_key_generator, email_verification_days, image_thumb_name
 from forum.models import UniversityField
@@ -25,12 +26,16 @@ class Profile(models.Model):
             max_length=255, default="avatars/default.jpeg", blank=True, null=True)
     name = models.CharField(verbose_name=_("Name"), max_length=15, blank=True, null=True)
     nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15, blank=True, null=True)
-    phone = models.CharField(verbose_name=_("Mobile phone"), max_length=15, blank=True, null=True)
+    phone = models.PositiveIntegerField(verbose_name=_("Mobile phone"), \
+            validators=[RegexValidator(r'^\d{1,15}$', message=_("Please enter at most 15 digits number"), code="invalid_phone_number")], \
+            blank=True, null=True)
     city = models.CharField(verbose_name=_("Current city"), max_length=15, blank=True, null=True)
     country = models.CharField(verbose_name=_("Current country"), max_length=15, blank=True, null=True)
     university = models.CharField(verbose_name=_("Graduated university"), max_length=50, blank=True, null=True)
     current_work_place = models.CharField(verbose_name=_("Current work place"), max_length=50, blank=True, null=True)
-    student_number = models.PositiveIntegerField(verbose_name=_("Student number"), blank=True, null=True)
+    student_number = models.PositiveIntegerField(verbose_name=_("Student number"), \
+            validators=[RegexValidator(r'^\d{1,15}$', message=_("Please enter at most 15 digits number"), code="invalid_student_number")], \
+            blank=True, null=True)
     stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
     USER_STATE_CHOICES = (
         ('N', _("New")),

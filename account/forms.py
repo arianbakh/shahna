@@ -27,6 +27,7 @@ class ProfileForm(forms.ModelForm):
                   'current_work_place', 'student_number',)
         widgets = {
                 'student_number': forms.TextInput(attrs={'placeholder': _('88102030')}),
+                'phone': forms.TextInput(attrs={'placeholder': _('02187654321')}),
                 'avatar': forms.FileInput(),
         }
 
