@@ -12,11 +12,11 @@
                         <h4>
                             {% if question.is_stared %}
                                 <a class="question-button-undo" href="{% url 'unstar_question' question_id=question.id %}">
-                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
+                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف پسندیدن"></span>
                                 </a>
                             {% else %}
                                 <a class="question-button-do" href="{% url 'star_question' question_id=question.id %}">
-                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="ستاره کردن"></span>
+                                    <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="پسندیدن"></span>
                                 </a>
                             {% endif %}
                         </h4>
@@ -122,11 +122,11 @@
                         {% endif %}
                         {% if answer.is_stared %}
                             <a class="question-button-undo" href="{% url 'unstar_answer' answer_id=answer.id %}">
-                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف ستاره"></span>
+                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="حذف پسندیدن"></span>
                             </a>
                         {% else %}
                             <a class="question-button-do" href="{% url 'star_answer' answer_id=answer.id %}">
-                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="ستاره کردن"></span>
+                                <span class="glyphicon glyphicon-star" data-toggle="tooltip" title="پسندیدن"></span>
                             </a>
                         {% endif %}
 
