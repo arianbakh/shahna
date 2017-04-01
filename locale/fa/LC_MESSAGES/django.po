@@ -33,7 +33,7 @@ msgstr "آدرس پست الکتورنیکی"
 
 #: account/forms.py:13
 msgid "I Agree with the terms and conditions"
-msgstr "من با شرایط و قوانین توافق می‌کنم"
+msgstr "من شرایط مرامنامه را می‌پذیرم"
 
 #: account/forms.py:22
 msgid "You must accept our terms"
