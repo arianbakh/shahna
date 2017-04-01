@@ -10,10 +10,17 @@ from account.models import Profile, BlockUser
 
 class UserCreationFormWithEmail(UserCreationForm):
     username = forms.EmailField(max_length=64, label=_("Email"), help_text=_("Email Address"))
+    i_agree = forms.BooleanField(label=_("I Agree with the terms and conditions"), required=False)
 
     def clean_email(self):
         email = self.cleaned_data['username']
         return email
+
+    def clean_i_agree(self):
+        i_agree = self.cleaned_data['i_agree']
+        if not i_agree:
+            raise ValidationError(_("You must accept our terms"))
+        return i_agree
 
 
 class AuthenticationFormWithEmail(AuthenticationForm):

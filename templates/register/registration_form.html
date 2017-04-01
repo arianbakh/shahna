@@ -14,12 +14,25 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                        <div class="col-xs-9 persian-light">
-                            {{ field|add_class:"form-control" }}
-                        </div>
-                        <div class="col-xs-3 persian">
-                            {{ field.label_tag }}
-                        </div>
+                        {% if field.html_name == 'i_agree' %}
+                            <div class="col-xs-9 persion-light">
+                                <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+                                    {{ terms|safe }}
+                                </div>
+                            </div>
+                            <label class="col-xs-3 persian">مرامنامه:</label>
+                            <div class="col-xs-6 col-xs-offset-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                        {% else %}
+                            <div class="col-xs-9 persian-light">
+                                {{ field|add_class:"form-control" }}
+                            </div>
+                            <div class="col-xs-3 persian">
+                                {{ field.label_tag }}
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
                 <div class="form-group">

@@ -40,8 +40,12 @@ def register(request):
             return HttpResponseRedirect('/accounts/register/sent_email')
     else:
         user_form = UserCreationFormWithEmail()
+
+    with open('templates/register/terms.txt') as f:
+        terms = f.read()
     return render(request, 'register/registration_form.html', {
         'user_form': user_form,
+        'terms': terms,
     })
 
 

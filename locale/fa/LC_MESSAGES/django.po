@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-01 12:38+0430\n"
+"POT-Creation-Date: 2017-04-01 17:49+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,23 +23,31 @@ msgstr ""
 msgid "You are blocked till %s"
 msgstr "شما تا زمان %s بلاک هستید"
 
-#: account/forms.py:12 account/forms.py:20
+#: account/forms.py:12 account/forms.py:27
 msgid "Email"
 msgstr "ایمیل"
 
-#: account/forms.py:12 account/forms.py:20
+#: account/forms.py:12 account/forms.py:27
 msgid "Email Address"
 msgstr "آدرس پست الکتورنیکی"
 
-#: account/forms.py:29
+#: account/forms.py:13
+msgid "I Agree with the terms and conditions"
+msgstr "من با شرایط و قوانین توافق می‌کنم"
+
+#: account/forms.py:22
+msgid "You must accept our terms"
+msgstr "شما باید قوانین و شرایط ما را بپذیرید"
+
+#: account/forms.py:36
 msgid "88102030"
 msgstr ""
 
-#: account/forms.py:30
+#: account/forms.py:37
 msgid "02187654321"
 msgstr ""
 
-#: account/forms.py:37
+#: account/forms.py:44
 #, python-format
 msgid "Please keep filesize under %s."
 msgstr "لطفا حجم فایل کمتر از %s باشد"
@@ -258,7 +266,6 @@ msgid "Block reason:"
 msgstr "دلیل بلاک:"
 
 #: templates/account/verification_email.html:5
-#| msgid "Shahnay &mdash; Activate your account"
 msgid "Shahnay &mdash; Activating account"
 msgstr "شهنای - فعال‌سازی حساب کاربری"
 
