@@ -211,7 +211,7 @@ msgstr "حذف شده"
 
 #: forum/models.py:44 forum/models.py:71
 msgid "Published"
-msgstr "وضعیت انتشار"
+msgstr "منتشر شده"
 
 #: forum/models.py:46 forum/models.py:73
 msgid "Publish state"
