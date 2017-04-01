@@ -52,16 +52,6 @@
                         <hr>
 
                         <div class="row">
-                            <div class="col-xs-12">
-                                <span class="persian-light">
-                                    {{ q.truncated_description }}
-                                </span>
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <div class="row">
                             <div class="col-xs-6 text-left">
                                 {% for tag in q.tags.all %}
                                     <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
@@ -77,19 +67,6 @@
                                 <span>{{ q.views }}</span>
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span>{{ q.stars.count }}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="persian-light col-xs-12">
-                                 پرسشگر :
-                                <a href="{% url 'profile' user_id=q.user.id %}">
-                                    {% if q.user.profile.nickname %}
-                                    {{ q.user.profile.nickname }}
-                                    {% else %}
-                                    ناشناس
-                                    {% endif %}
-                                </a>
-                                <img src="{{MEDIA_URL}}{{q.user.profile.get_avatar_40x40}}" height="40" width="40">
                             </div>
                         </div>
                     </div>
