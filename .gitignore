@@ -4,6 +4,8 @@ db.sqlite3
 media/avatars/*
 !media/avatars/PLACEHOLDER
 !media/avatars/default.jpeg
+!media/avatars/default_40x40.jpeg
+!media/avatars/default_200x200.jpeg
 media/upload/avatars/*
 !media/upload/avatars/PLACEHOLDER
 logs/*
