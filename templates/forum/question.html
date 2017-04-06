@@ -43,8 +43,8 @@
                         {% for tag in question.tags.all %}
                             <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
                         {% endfor %}
-                        {% for field in question.fields.all %}
-                            <a href="{% url 'fields' field_id=field.id %}"><span class="persian-light">#{{ field.get_as_tag }}</span></a>
+                        {% for subject in question.subjects.all %}
+                            <a href="{% url 'subjects' subject_id=subject.id %}"><span class="persian-light">#{{ subject.get_as_tag }}</span></a>
                         {% endfor %}
                     </div>
                     <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
@@ -75,8 +75,8 @@
                         <div class="persian-light col-xs-9">
                             پرسشگر:
                             <a href="{% url 'profile' user_id=question.user.id %}">
-                                {% if question.user.profile.nickname %}
-                                {{ question.user.profile.nickname }}
+                                {% if question.user.profile.name %}
+                                {{ question.user.profile.name }}
                                 {% else %}
                                 ناشناس
                                 {% endif %}
@@ -87,8 +87,8 @@
                         <div class="persian-light col-xs-12">
                             پرسشگر:
                             <a href="{% url 'profile' user_id=question.user.id %}">
-                                {% if question.user.profile.nickname %}
-                                {{ question.user.profile.nickname }}
+                                {% if question.user.profile.name %}
+                                {{ question.user.profile.name }}
                                 {% else %}
                                 ناشناس
                                 {% endif %}
@@ -168,8 +168,8 @@
                         <div class="persian-light col-xs-9">
                             پاسخ‌دهنده:
                             <a href="{% url 'profile' user_id=answer.user.id %}">
-                                {% if answer.user.profile.nickname %}
-                                {{ answer.user.profile.nickname }}
+                                {% if answer.user.profile.name %}
+                                {{ answer.user.profile.name }}
                                 {% else %}
                                 ناشناس
                                 {% endif %}
@@ -180,8 +180,8 @@
                         <div class="persian-light col-xs-12">
                             پاسخ‌دهنده:
                             <a href="{% url 'profile' user_id=answer.user.id %}">
-                                {% if answer.user.profile.nickname %}
-                                {{ answer.user.profile.nickname }}
+                                {% if answer.user.profile.name %}
+                                {{ answer.user.profile.name }}
                                 {% else %}
                                 ناشناس
                                 {% endif %}

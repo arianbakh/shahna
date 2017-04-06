@@ -12,12 +12,12 @@ class QuestionForm(forms.ModelForm):
     tags = forms.CharField(max_length=255, help_text=_("Please enter tags separated by space ( at least 3 tags)"))
     class Meta:
         model = Question
-        fields = ('title', 'description', 'fields')
+        fields = ('title', 'description', 'subjects')
         widgets = {
-                "fields": forms.CheckboxSelectMultiple(),
+                "subjects": forms.CheckboxSelectMultiple(),
         }
         error_messages = {
-            'fields': {
+            'subjects': {
                 'required': _("Select at least one field"),
             },
         }

@@ -17,15 +17,15 @@ class Tag(models.Model):
         verbose_name_plural=_("Tags")
 
 
-class UniversityField(models.Model):
+class Subject(models.Model):
     name = models.CharField(verbose_name=_("name"), max_length=50)
 
     def get_as_tag(self):
         return self.name.replace(' ', '_')
 
     class Meta:
-        verbose_name=_("University Field")
-        verbose_name_plural=_("University Fields")
+        verbose_name=_("Subject")
+        verbose_name_plural=_("Subjects")
 
     def __unicode__(self):
         return self.name
@@ -47,7 +47,7 @@ class Question(models.Model):
                                              choices=PUBLISH_STATE_CHOICES)
     upload_time = models.DateTimeField(verbose_name=_("Upload time"), auto_now_add=True)
     tags = models.ManyToManyField(Tag, verbose_name=_("tags"))
-    fields = models.ManyToManyField(UniversityField, verbose_name=_("Fields"))
+    subjects = models.ManyToManyField(Subject, verbose_name=_("Subjects"))
 
     class Meta:
         verbose_name=_("Question")

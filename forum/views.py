@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
 
-from forum.models import Question, Answer, Tag, UniversityField
+from forum.models import Question, Answer, Tag, Subject
 from forum.forms import QuestionForm, AnswerForm
 from account.models import Profile
 from account.decorators import unblocked_user_required
@@ -307,9 +307,9 @@ def tags(request, tag_id):
     return render_to_response('index.html', {'questions': page_questions, 'page_desc': tag.name}, context_instance=RequestContext(request))
 
 
-def fields(request, field_id):
-    field = UniversityField.objects.get(id=field_id)
-    questions = field.question_set.all().annotate(cnt=Count('stars')).order_by('-cnt')
+def subjects(request, subject_id):
+    subject = Subject.objects.get(id=subject_id)
+    questions = subject.question_set.all().annotate(cnt=Count('stars')).order_by('-cnt')
     paginator = Paginator(questions, PAGE_SIZE)
     page = request.GET.get('page')
     if not page:
@@ -322,4 +322,4 @@ def fields(request, field_id):
     for question in page_questions:
         question.answer_count = question.answer_set.all().count()  # TODO annotate
     page_questions = _truncate_question_descriptions(page_questions)
-    return render_to_response('index.html', {'questions': page_questions, 'page_desc': field.name}, context_instance=RequestContext(request))
+    return render_to_response('index.html', {'questions': page_questions, 'page_desc': subject.name}, context_instance=RequestContext(request))

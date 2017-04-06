@@ -11,7 +11,6 @@ from django.template.loader import render_to_string
 from django.core.validators import RegexValidator
 
 from account.utils import random_key_generator, email_verification_days, image_thumb_name
-from forum.models import UniversityField
 
 def _avatar_file_name(instance, filename):
     format = filename
@@ -25,7 +24,6 @@ class Profile(models.Model):
     avatar = models.ImageField(verbose_name=_("Avatar"), upload_to=_avatar_file_name, \
             max_length=255, default="avatars/default.jpeg", blank=True, null=True)
     name = models.CharField(verbose_name=_("Name"), max_length=15, blank=True, null=True)
-    nickname = models.CharField(verbose_name=_("Nickname (Display name)"), max_length=15, blank=True, null=True)
     phone = models.PositiveIntegerField(verbose_name=_("Mobile phone"), \
             validators=[RegexValidator(r'^\d{1,15}$', message=_("Please enter at most 15 digits number"), code="invalid_phone_number")], \
             blank=True, null=True)
@@ -33,8 +31,11 @@ class Profile(models.Model):
     country = models.CharField(verbose_name=_("Current country"), max_length=15, blank=True, null=True)
     university = models.CharField(verbose_name=_("Graduated university"), max_length=50, blank=True, null=True)
     current_work_place = models.CharField(verbose_name=_("Current work place"), max_length=50, blank=True, null=True)
+    entrance_year = models.PositiveIntegerField(verbose_name=_("Entrance year"), \
+            validators=[RegexValidator(r'^\d{4}$', message=_("Please enter 4 digits number"), code="invalid_entrance_year")], \
+            blank=True, null=True)
     student_number = models.PositiveIntegerField(verbose_name=_("Student number"), \
-            validators=[RegexValidator(r'^\d{1,15}$', message=_("Please enter at most 15 digits number"), code="invalid_student_number")], \
+            validators=[RegexValidator(r'^\d{1,10}$', message=_("Please enter at most 10 digits number"), code="invalid_student_number")], \
             blank=True, null=True)
     stars = models.PositiveIntegerField(verbose_name=_("Stars"), default=0)
     USER_STATE_CHOICES = (
@@ -44,7 +45,7 @@ class Profile(models.Model):
     )
     access_level = models.CharField(verbose_name=_("User access level"), max_length=1,
                                              choices=USER_STATE_CHOICES)
-    university_field = models.ForeignKey(UniversityField, verbose_name=_("Field"), blank=True, null=True)
+    university_field = models.CharField(verbose_name=_("Field"), max_length=25, blank=True, null=True)
 
     class Meta:
         verbose_name = _("Profile")

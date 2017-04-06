@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-01 17:49+0430\n"
+"POT-Creation-Date: 2017-04-06 13:31+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,132 +40,145 @@ msgid "You must accept our terms"
 msgstr "شما باید قوانین و شرایط ما را بپذیرید"
 
 #: account/forms.py:36
-msgid "88102030"
+msgid "1380"
 msgstr ""
 
 #: account/forms.py:37
+msgid "88102030"
+msgstr ""
+
+#: account/forms.py:38
 msgid "02187654321"
 msgstr ""
 
-#: account/forms.py:44
+#: account/forms.py:45
 #, python-format
 msgid "Please keep filesize under %s."
 msgstr "لطفا حجم فایل کمتر از %s باشد"
 
-#: account/models.py:25
+#: account/models.py:24
 msgid "Avatar"
 msgstr "عکس پروفایل"
 
-#: account/models.py:27
+#: account/models.py:26
 msgid "Name"
-msgstr "نام اصلی"
+msgstr "نام"
 
-#: account/models.py:28
-msgid "Nickname (Display name)"
-msgstr "نام مستعار (نامی که نمایش داده می‌شود)"
-
-#: account/models.py:29
+#: account/models.py:27
 msgid "Mobile phone"
 msgstr "شماره موبایل"
 
-#: account/models.py:30 account/models.py:37
+#: account/models.py:28
 msgid "Please enter at most 15 digits number"
 msgstr "لطفا حداکثر یک عدد ۱۵ رقمی وارد کنید"
 
-#: account/models.py:32
+#: account/models.py:30
 msgid "Current city"
 msgstr "شهر محل اقامت فعلی"
 
-#: account/models.py:33
+#: account/models.py:31
 msgid "Current country"
 msgstr "کشور محل اقامت فعلی"
 
-#: account/models.py:34
+#: account/models.py:32
 msgid "Graduated university"
 msgstr "دانشگاه اخذ مدرک کارشناسی"
 
-#: account/models.py:35
+#: account/models.py:33
 msgid "Current work place"
 msgstr "محل کار فعلی"
 
-#: account/models.py:36
+#: account/models.py:34
+msgid "Entrance year"
+msgstr "سال ورود به دانشگاه"
+
+#: account/models.py:35
+msgid "Please enter 4 digits number"
+msgstr "لطفا یک عدد ۴ رقمی وارد کنید"
+
+#: account/models.py:37
 msgid "Student number"
 msgstr "شماره دانشجویی"
 
-#: account/models.py:39 forum/models.py:38 forum/models.py:66
+#: account/models.py:38
+#| msgid "Please enter at most 15 digits number"
+msgid "Please enter at most 10 digits number"
+msgstr "لطفا حداکثر یک عدد ۱۰ رقمی وارد کنید"
+
+#: account/models.py:40 forum/models.py:38 forum/models.py:66
 msgid "Stars"
 msgstr "ستاره‌ها"
 
-#: account/models.py:41 forum/models.py:41 forum/models.py:68
+#: account/models.py:42 forum/models.py:41 forum/models.py:68
 msgid "New"
 msgstr "جدید"
 
-#: account/models.py:42 forum/models.py:43 forum/models.py:70
+#: account/models.py:43 forum/models.py:43 forum/models.py:70
 msgid "Rejected"
 msgstr "رد شده"
 
-#: account/models.py:43 forum/models.py:65
+#: account/models.py:44 forum/models.py:65
 msgid "Accepted"
 msgstr "قبول‌شده"
 
-#: account/models.py:45
+#: account/models.py:46
 msgid "User access level"
 msgstr "سطح دسترسی کاربر"
 
-#: account/models.py:47
+#: account/models.py:48
 msgid "Field"
 msgstr "رشته‌"
 
-#: account/models.py:50
+#: account/models.py:51
 msgid "Profile"
 msgstr "پروفایل"
 
-#: account/models.py:51
+#: account/models.py:52
 msgid "Profiles"
 msgstr "پروفایل‌ها"
 
-#: account/models.py:76
+#: account/models.py:77
 msgid "verification key"
-msgstr ""
+msgstr "کد تایید"
 
-#: account/models.py:79
+#: account/models.py:80
 msgid "New user email"
 msgstr ""
 
-#: account/models.py:80
+#: account/models.py:81
 msgid "New user emails"
 msgstr ""
 
-#: account/models.py:124
+#: account/models.py:125
 msgid "Block reason"
 msgstr "دلیل بلاک"
 
-#: account/models.py:127 templates/account/profile.html:15
+#: account/models.py:128 templates/account/profile.html:15
 #: templates/account/profile.html:161
 msgid "Unlimited"
 msgstr "نامحدود"
 
-#: account/models.py:128
+#: account/models.py:129
 msgid "1 Day"
 msgstr "۱ روز"
 
-#: account/models.py:129
+#: account/models.py:130
 msgid "3 Days"
 msgstr "۳ روز"
 
-#: account/models.py:130
+#: account/models.py:131
 msgid "7 Days"
 msgstr "۷ روز"
 
-#: account/models.py:132
+#: account/models.py:133
 msgid "Block till"
 msgstr "بلاک تا زمان"
 
-#: account/models.py:136
+#: account/models.py:137
 msgid "User Block"
 msgstr "بلاک‌ کاربر"
 
-#: account/models.py:137
+#: account/models.py:138
 msgid "User Blocks"
 msgstr "بلاک‌های کاربران"
 
@@ -194,12 +207,12 @@ msgid "Tag"
 msgstr "برچسب"
 
 #: forum/models.py:27
-msgid "University Field"
-msgstr "رشته دانشگاهی"
+msgid "Subject"
+msgstr "موضوع"
 
-#: forum/models.py:28
-msgid "University Fields"
-msgstr "رشته‌های دانشگاهی"
+#: forum/models.py:28 forum/models.py:50
+msgid "Subjects"
+msgstr "موضوع‌ها"
 
 #: forum/models.py:36
 msgid "Title"
@@ -232,10 +245,6 @@ msgstr "زمان بارگذاری"
 #: forum/models.py:49
 msgid "tags"
 msgstr "برچسب‌ها"
-
-#: forum/models.py:50
-msgid "Fields"
-msgstr "رشته‌ها"
 
 #: forum/models.py:53
 msgid "Question"
@@ -287,8 +296,5 @@ msgstr "لینک بالا پس از %(expiration_days)s روز منقضی می�
 msgid "Please confirm your email address."
 msgstr "لطفا آدرس ایمیلتان را تایید کنید"
 
-#~ msgid "Optional"
-#~ msgstr "اختیاری"
-
-#~ msgid "Forever"
-#~ msgstr "همیشه"
+#~ msgid "Fields"
+#~ msgstr "رشته‌ها"

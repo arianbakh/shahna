@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from forum.models import Question, Answer, Tag, UniversityField
+from forum.models import Question, Answer, Tag, Subject
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
@@ -15,6 +15,6 @@ class AnswerAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-@admin.register(UniversityField)
+@admin.register(Subject)
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)

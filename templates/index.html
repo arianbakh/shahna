@@ -56,8 +56,8 @@
                                 {% for tag in q.tags.all %}
                                     <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
                                 {% endfor %}
-                                {% for field in q.fields.all %}
-                                    <a href="{% url 'fields' field_id=field.id %}"><span class="persian-light">#{{ field.get_as_tag }}</span></a>
+                                {% for subject in q.subjects.all %}
+                                    <a href="{% url 'subjects' subject_id=subject.id %}"><span class="persian-light">#{{ subject.get_as_tag }}</span></a>
                                 {% endfor %}
                             </div>
                             <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">

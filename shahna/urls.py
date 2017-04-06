@@ -7,7 +7,7 @@ from django.views.static import serve
 
 
 from forum.views import home, ask, question_page, edit_question, remove_question, star_question, unstar_question, \
-    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, fields, new_answer
+    edit_answer, remove_answer, accept_answer, reject_answer, star_answer, unstar_answer, search, tags, subjects, new_answer
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^unstar_answer/(?P<answer_id>[0-9]+)/$', unstar_answer, name='unstar_answer'),
     url(r'^search/?$', search, name='search'),
     url(r'^tags/(?P<tag_id>[0-9]+)/?$', tags, name='tags'),
-    url(r'^fields/(?P<field_id>[0-9]+)/?$', fields, name='fields'),
+    url(r'^subjects/(?P<subject_id>[0-9]+)/?$', subjects, name='subjects'),
     url(r'^about_us/$', TemplateView.as_view(template_name='about_us.html')),
 ]
 

@@ -30,9 +30,10 @@ class AuthenticationFormWithEmail(AuthenticationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('name', 'nickname', 'avatar', 'phone', 'city', 'country', 'university', 'university_field', \
-                  'current_work_place', 'student_number',)
+        fields = ('name', 'avatar', 'phone', 'city', 'country', 'university', 'university_field', \
+                  'current_work_place', 'entrance_year', 'student_number',)
         widgets = {
+                'entrance_year': forms.TextInput(attrs={'placeholder': _('1380')}),
                 'student_number': forms.TextInput(attrs={'placeholder': _('88102030')}),
                 'phone': forms.TextInput(attrs={'placeholder': _('02187654321')}),
                 'avatar': forms.FileInput(),
