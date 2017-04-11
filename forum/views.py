@@ -268,7 +268,7 @@ def search(request):
         if query:
             questions = Question.objects.filter(published='P')
             for word in query.strip().split():
-                questions = questions.filter(Q(title__icontains=word) | Q(description__icontains=word) | Q(tags__name__icontains=word) | Q(fields__name__icontains=word))
+                questions = questions.filter(Q(title__icontains=word) | Q(description__icontains=word) | Q(tags__name__icontains=word) | Q(subjects__name__icontains=word))
             questions = questions.annotate(cnt=Count('stars')).order_by('-cnt')
             paginator = Paginator(questions, PAGE_SIZE)
             page = request.GET.get('page')
