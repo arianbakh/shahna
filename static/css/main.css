@@ -149,3 +149,15 @@ body {
 .about-us {
   line-height: 30px;
 }
+
+.gold {
+    color: #D4AF37;
+}
+
+.silver {
+    color: #C0C0C0;
+}
+
+.bronze {
+    color: #CD7F32;
+}
