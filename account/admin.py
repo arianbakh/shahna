@@ -8,4 +8,5 @@ class BlockUserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ('user', 'name', 'university')
+    search_fields = ('user__username', 'name', 'university')
