@@ -45,7 +45,7 @@ class Profile(models.Model):
     )
     access_level = models.CharField(verbose_name=_("User access level"), max_length=1,
                                              choices=USER_STATE_CHOICES)
-    university_field = models.CharField(verbose_name=_("Field"), max_length=25, blank=True, null=True)
+    university_field = models.CharField(verbose_name=_("Field"), max_length=200, blank=True, null=True)
 
     class Meta:
         verbose_name = _("Profile")
