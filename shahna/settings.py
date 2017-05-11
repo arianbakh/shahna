@@ -162,9 +162,9 @@ STAR_RULES = {
 SITE_ID = 1
 
 DEFAULT_FROM_EMAIL = 'Shahnay <noreply@shahnay.ir>'
-#EMAIL_HOST = 'localhost'
-#EMAIL_USER = 'shahna'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_USER = 'shahna'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
 #EMAIL_PORT = 587

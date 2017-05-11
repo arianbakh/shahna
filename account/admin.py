@@ -1,7 +1,11 @@
 from django.contrib import admin
 
-from account.models import BlockUser
+from account.models import BlockUser, Profile
 
 @admin.register(BlockUser)
 class BlockUserAdmin(admin.ModelAdmin):
     list_display = ('user', 'till_date',)
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user',)
