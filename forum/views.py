@@ -171,9 +171,6 @@ def new_answer(request, question_id):
                 answer.question = q
                 answer.user = user
                 user.profile.change_star(settings.STAR_RULES['ANSWERING'])
-                if user == q.user:
-                    q.answer_set.all().update(accepted=False)
-                    answer.accepted = True
                 answer.save()
     return HttpResponseRedirect(reverse('question_page', kwargs={"question_id": q.id}))
 
