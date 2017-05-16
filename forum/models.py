@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from datetime import date
+from datetime import datetime, date
 
 from django.db import models
 from django.conf import settings
@@ -78,6 +78,7 @@ class Answer(models.Model):
     )
     published = models.CharField(verbose_name=_("Publish state"), max_length=1,
                                              choices=PUBLISH_STATE_CHOICES, default='N')
+    upload_time = models.DateTimeField(verbose_name=_("Upload time"), default=datetime.now)
     class Meta:
         verbose_name=_("Answer")
         verbose_name_plural=_("Answers")

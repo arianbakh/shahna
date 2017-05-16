@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
+{% load jdate %}
 {% block content %}
 <div class="row row-top-buffer">
     <div class="col-xs-12">
@@ -82,6 +83,7 @@
                                 {% endif %}
                             </a>
                             <img src="{{MEDIA_URL}}{{question.user.profile.get_avatar_40x40}}" height="40" width="40">
+                            تاریخ: {{ question.upload_time|jdate }}
                         </div>
                     {% else %}
                         <div class="persian-light col-xs-12">
@@ -94,6 +96,7 @@
                                 {% endif %}
                             </a>
                             <img src="{{MEDIA_URL}}{{question.user.profile.get_avatar_40x40}}" height="40" width="40">
+                            تاریخ: {{ question.upload_time|jdate }}
                         </div>
                     {% endif %}
                 </div>
@@ -175,6 +178,7 @@
                                 {% endif %}
                             </a>
                             <img src="{{MEDIA_URL}}{{answer.user.profile.get_avatar_40x40}}" height="40" width="40">
+                            تاریخ: {{ question.upload_time|jdate }}
                         </div>
                     {% else %}
                         <div class="persian-light col-xs-12">
@@ -187,6 +191,7 @@
                                 {% endif %}
                             </a>
                             <img src="{{MEDIA_URL}}{{answer.user.profile.get_avatar_40x40}}" height="40" width="40">
+                            تاریخ: {{ question.upload_time|jdate }}
                         </div>
                     {% endif %}
                 </div>
