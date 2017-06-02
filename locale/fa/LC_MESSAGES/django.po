@@ -228,7 +228,7 @@ msgstr "بازدید‌ها"
 
 #: forum/models.py:42 forum/models.py:69
 msgid "Removed"
-msgstr "حذف شده"
+msgstr "عدم نمایش"
 
 #: forum/models.py:44 forum/models.py:71
 msgid "Published"
