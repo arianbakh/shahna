@@ -63,13 +63,19 @@
                 {% if questions.has_next %}
                     <li>
                         <a href="?page={{ questions.next_page_number }}{% if query %}&query={{ query }}{% endif %}">
-                            <span aria-hidden="true">&raquo;</span>
+                            <span aria-hidden="true">
+                                بعدی
+                                &raquo;
+                            </span>
                         </a>
                     </li>
                 {% else %}
                     <li class="disabled">
                         <a>
-                            <span aria-hidden="true">&raquo;</span>
+                            <span aria-hidden="true">
+                                بعدی
+                                &raquo;
+                            </span>
                         </a>
                     </li>
                 {% endif %}
@@ -79,13 +85,19 @@
                 {% if questions.has_previous %}
                     <li>
                         <a href="?page={{ questions.previous_page_number }}{% if query %}&query={{ query }}{% endif %}">
-                            <span aria-hidden="true">&laquo;</span>
+                            <span aria-hidden="true">
+                                &laquo;
+                                قبلی
+                            </span>
                         </a>
                     </li>
                 {% else %}
                     <li class="disabled">
                         <a>
-                            <span aria-hidden="true">&laquo;</span>
+                            <span aria-hidden="true">
+                                &laquo;
+                                قبلی
+                            </span>
                         </a>
                     </li>
                 {% endif %}
