@@ -38,39 +38,22 @@
 
     <div class="row row-top-buffer">
         <div class="col-xs-12">
-            {% for q in questions %}
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-12">
+            {% for q in questions|rtl_list %}
+                {% if forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
+                    {% if q %}
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
                                 <a href="/question/{{q.id}}/">
                                     <h4 class="persian">{{ q.title }}</h4>
                                 </a>
                             </div>
                         </div>
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-xs-6 text-left">
-                                {% for tag in q.tags.all %}
-                                    <a href="{% url 'tags' tag_id=tag.id %}"><span class="persian-light">#{{ tag.name }}</span></a>
-                                {% endfor %}
-                                {% for subject in q.subjects.all %}
-                                    <a href="{% url 'subjects' subject_id=subject.id %}"><span class="persian-light">#{{ subject.get_as_tag }}</span></a>
-                                {% endfor %}
-                            </div>
-                            <div class="col-xs-6 text-right" data-toggle="tooltip" title="پاسخ‌ها">
-                                <span class="glyphicon glyphicon-comment"></span>
-                                <span>{{ q.answer_set.count }}</span>
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span>{{ q.views }}</span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span>{{ q.stars.count }}</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    {% else %}
+                    <div class="col-xs-6"></div>
+                    {% endif %}
+                {% if forloop.counter|divisibleby:2 %}</div>{% endif %}
             {% endfor %}
         </div>
 
