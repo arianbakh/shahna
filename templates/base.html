@@ -53,9 +53,9 @@
               </a>
             </li>
             <li>
-              <a href="{% url 'myProfile' %}">
+              <a class="navbar-profile" href="{% url 'myProfile' %}">
                 <span class="persian-light">پروفایل من </span>
-                <span class="glyphicon glyphicon-user"></span>
+                <img class="img-rounded" src="{{MEDIA_URL}}{{request.user.profile.get_avatar_40x40}}">
               </a>
             </li>
             <li>
