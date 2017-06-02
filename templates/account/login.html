@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
   <div class="row row-top-buffer">
-    <div class="col-xs-8 col-xs-offset-2 text-center">
+    <div class="col-xs-12">
       <form class="form-horizontal" method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -23,10 +23,14 @@
           </div>
         {% endfor %}
         <div class="form-group">
-          <button class="btn btn-default persian-light" type="submit">ورود</button>
+          <div class="col-xs-12 text-center">
+            <button class="btn btn-default persian-light" type="submit">ورود</button>
+          </div>
         </div>
       </form>
-      <a class="persian-light" href="{% url 'register' %}">حساب کاربری ندارید؟ همین الان بسازید</a>
+      <div class="col-xs-12 text-center">
+        <a class="persian-light" href="{% url 'register' %}">حساب کاربری ندارید؟ همین الان بسازید</a>
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block content %}
 <div class="row row-top-buffer">
-    <div class="col-xs-8 col-xs-offset-2">
+    <div class="col-xs-12">
         {% if user_block %}
             <div class="alert alert-danger" role="alert">
                 <h1 class="persian text-center">
@@ -11,19 +11,19 @@
                     {% trans "You are blocked" %}
                 </h1>
                 <div class="row persian-light">
-                    <div class="col-xs-9">
+                    <div class="col-xs-8">
                         {% if user_block.unlimited %}{% trans "Unlimited" %}{% else %}
                         {{ user_block.till_date_string }} {%endif%}
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-4">
                         {% trans "Unblock time:" %}
                     </div>
                 </div>
                 <div class="row persian-light">
-                    <div class="col-xs-9">
+                    <div class="col-xs-8">
                         {{ user_block.reason }}
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-4">
                         {% trans "Block reason:" %}
                     </div>
                 </div>

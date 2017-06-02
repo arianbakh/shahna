@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
   <div class="row row-top-buffer">
-    <div class="col-xs-8 col-xs-offset-2 text-center">
+    <div class="col-xs-12 text-center">
       <form class="form-horizontal" method="post">
         {% csrf_token %}
         {% for field in question_form %}
