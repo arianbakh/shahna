@@ -36,7 +36,7 @@ class Subject(models.Model):
 
 class Question(models.Model):
     user = models.ForeignKey(User)
-    title = models.CharField(verbose_name=_("Title"), max_length=50)
+    title = models.CharField(verbose_name=_("Title"), max_length=60)
     description = models.TextField(verbose_name=_("Description"), default="")
     stars = models.ManyToManyField(User, verbose_name=_("Stars"), related_name='question_user_stars')
     views = models.PositiveIntegerField(verbose_name=_("Views"), default=0)
