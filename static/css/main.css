@@ -118,32 +118,32 @@ body {
 }
 
 .question-button-do {
-    color: lightgray;
+    color: darkgray;
     text-decoration: none;
 }
 
 .question-button-do:hover {
-    color: lightgray;
+    color: darkgray;
     text-decoration: none;
 }
 
 .question-button-do:visited {
-    color: lightgray;
+    color: darkgray;
     text-decoration: none;
 }
 
 .question-button-undo {
-    color: gray;
+    color: darkgreen;
     text-decoration: none;
 }
 
 .question-button-undo:hover {
-    color: gray;
+    color: darkgreen;
     text-decoration: none;
 }
 
 .question-button-undo:visited {
-    color: gray;
+    color: darkgreen;
     text-decoration: none;
 }
 
