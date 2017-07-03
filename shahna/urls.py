@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^subjects/(?P<subject_id>[0-9]+)/?$', subjects, name='subjects'),
     url(r'^about_us/$', TemplateView.as_view(template_name='about_us.html')),
     url(r'^sponsors/$', TemplateView.as_view(template_name='sponsors.html')),
+    url(r'^charity/$', TemplateView.as_view(template_name='charity.html')),
+    url(r'^charity-mechanics/$', TemplateView.as_view(template_name='charity-mechanics.html')),
 ]
 
 if settings.DEBUG:
